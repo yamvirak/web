@@ -1,0 +1,40 @@
+<!-- ===================== Header =================== -->
+<section class="body-description">
+    <div class="description-title">
+        <h3> <b>3. Description of the proposal</b></h3>
+    </div>
+
+    <div class="info">
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total trainee per one session in the training៖ ..............................trainees (if there are morethan one session in the training proposal)</p>
+        <span class="tab-one">Total number of sessions៖ ........................sessions</span>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Briefly describe the prospective trainees’ knowledge and capability៖ ................................... </p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Briefly describe the prospective trainees’ knowledge and capability៖ .................................................................</p>
+        <P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Briefly describe training content (Will the company/industry involve in the training content preparation?) ៖ ...........................</P>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Summary the criteria and experience of the trainers៖ </p>        
+    </div>
+    <div class="table">
+      <table style="width:100%">
+        <tr>
+          <th>Trainers’ name</th>
+          <th>Sex</th>
+          <th>Skills</th>
+          <th>Highest degree/ Qualification </th>
+          <th>Related working experience</th>
+        </tr>
+        <tr *ngFor="let row of data?.trainer_trainee?.trainers; let i = index; " [attr.data-index]="i">
+          <td class="td-size">{{ row?.user?.name }} </td>
+          <td>{{ row?.sex?.name }}</td>
+          <td>{{ row?.major }}</td>
+          <td>{{ row?.degree?.name }}</td>
+          <td class="text-center">{{ row?.experience_in_years }}</td>
+        </tr>
+        <!-- <tr>
+          <td class="td-size"> </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr> -->
+      </table>
+    </div>
+</section>

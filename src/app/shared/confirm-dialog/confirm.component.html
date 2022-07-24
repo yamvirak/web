@@ -1,0 +1,21 @@
+
+
+<div fxLayout="column"  fxFlex="1 0 auto">
+    <div class="pr-4" fxLayoutAlign="space-around stretch"> 
+        <div > <img width="140px" src="assets/mlm/question.png"></div>
+    </div>
+    <div  class="pr-2" fxLayoutAlign="space-around stretch">
+        <h1 md-dialog-title style="font-size: 25px;text-align: center;font-weight: 600;">CONFIRM</h1>
+    </div>
+    <div  class="pr-2" fxLayoutAlign="space-around stretch">
+        <div md-dialog-content style="font-size: 14px;font-weight: 600;"> ARE YOU SURE? </div>    
+    </div>
+    <mat-dialog-actions align="end" >
+        <button mat-raised-button color="warn" (click)="dialogRef.close(false)">No</button>
+        <button mat-raised-button color="accent" (click)="dialogRef.close(true)">Yes</button>
+    </mat-dialog-actions>
+</div>
+    
+
+
+

@@ -1,0 +1,80 @@
+<div id="login" class="inner-scroll" fxLayout="row" fxLayoutAlign="start">
+
+    <div id="login-form-wrapper" fusePerfectScrollbar
+         [@animate]="{value:'*',params:{delay:'300ms',x:'100%'}}">
+
+        <div id="login-form">
+
+            <div class="logo" fxHide.gt-xs >
+                <img src="assets/images/pos.png">
+            </div>
+
+            <div class="title">LOGIN TO YOUR ACCOUNT</div>
+            
+
+            <form name="loginForm" [formGroup]="loginForm" (ngSubmit)="onLogin()" novalidate>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput formControlName="username">
+                    <mat-icon matSuffix class="secondary-text">favorite</mat-icon>
+
+                    <mat-error *ngIf="loginForm.get('username').hasError('required')">
+                        Please enter phone number 
+                    </mat-error>
+                   
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password">
+                    <mat-icon matSuffix class="secondary-text">loyalty</mat-icon>
+                    <mat-error>
+                        <span *ngIf="loginForm.get('password').hasError('required')">Please enter your password</span>
+                        <span *ngIf="loginForm.get('password').hasError('minlength')">Your password length must be at least 6 long.</span>
+                        <span *ngIf="loginForm.get('password').hasError('maxlength')">Your password cannot enter more than 20 digits.</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- <div class="remember-forgot-password" fxLayout="row" fxLayout.xs="column"
+                     fxLayoutAlign="space-between center">
+                    <mat-checkbox class="remember-me" aria-label="Remember Me">
+                        Remember Me
+                    </mat-checkbox>
+
+                    <a class="forgot-password" [routerLink]="['/auth/forgot-password']">
+                        Forgot Password?
+                    </a>
+                </div> -->
+
+                <button mat-raised-button color="accent" class="submit-button" aria-label="LOGIN" [disabled]="loginForm.invalid || isLoading" >
+                    <mat-spinner style="margin:0 auto; " [diameter] = 30  *ngIf = " isLoading "  ></mat-spinner> 
+                    <span *ngIf = " !isLoading " >Login</span>
+                </button>
+
+            </form>
+
+            <!-- <div class="register" fxLayout="column" fxLayoutAlign="center center">
+                <span class="text">Don't have an account?</span>
+                <a class="link" [routerLink]="['/auth/register']">Create an account</a>
+            </div> -->
+        </div>
+    </div>
+
+    <!-- <div id="login-intro" fxFlex fxHide fxShow.gt-xs>
+
+        <div class="logo" [@animate]="{value:'*',params:{scale:'0.2'}}">
+            <img src="assets/images/pos.png">
+        </div>
+
+        <div class="title" [@animate]="{value:'*',params:{delay:'50ms',y:'25px'}}">
+            <b style="color:white" >CamCyber Online POS</b>
+        </div>
+
+        <div class="description" [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}">
+           <span style="color:white" >Best Stock & Inventory Management System in the world!!!</span> 
+        </div>
+
+    </div> -->
+    
+</div>

@@ -1,0 +1,18 @@
+.body-scheme {
+    background-color: white;
+    padding: 15px;
+}
+.rationale h3{
+    line-height: 12px;
+}
+.narratively p:before{
+    content: ' \25CF';
+    font-size: 10px;
+}
+.answer-narratively p:before{
+    content: ' \0020';
+}
+
+.answer-narratively{
+    margin-left: 0.8cm;
+}

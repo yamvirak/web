@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>Receipt <b style="color:blue" >#{{ data?.id }}</b></h2>
+<mat-divider></mat-divider>
+
+<mat-dialog-content class="mat-typography" style="width: 700px;">
+    <div fxLayout="row" class="pt-16 pb-16">
+        <div fxFlex="50" >
+            Created : {{ data?.created_at }} <br />
+        </div>
+    </div>
+   
+    <mat-divider></mat-divider>
+
+    <div fxLayout="row" class="pt-16 pb-16" >
+        <table class="proposal-value-table" >
+            
+            <thead>
+                <tr>
+                    <th >No.</th>
+                    <th class="">Name</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+
+                <tr *ngFor="let row of data; let i = index; " [attr.data-index]="i">
+
+                    <td >{{ i +1 }}</td>
+                    <td >{{ row?.name }} </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+    
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions align="end">
+    
+    
+    <button mat-button  [mat-dialog-close]=" false "  cdkFocusInitial>Close</button>
+
+</mat-dialog-actions>

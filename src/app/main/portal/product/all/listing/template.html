@@ -1,0 +1,128 @@
+
+<div class="content-cnt page-layout blank">
+
+    <div  class="header  p-24 h-80" fxLayout="row" fxLayoutAlign="start center"  >
+        <div fxFlex="50"  >
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="secondary-text s-18">home</mat-icon>
+                <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+                <span class="secondary-text">Product</span>
+            </div>
+        </div>
+
+        <div fxFlex="50" class="text-right"  >
+            <button  mat-stroked-button color="accent" (click) = " openCreateForm() ">
+                <mat-icon class="material-icons">add</mat-icon><span>Create New Product</span> 
+            </button>
+        </div>
+    </div>
+
+    <div class="content" >
+        <div  class="tab-content p-24">
+
+            <section class="filter">
+                <div fxLayout="row " fxLayoutAlign="start center"  >
+
+                    <div fxFlex="20" class="mr-8" >
+                        <mat-form-field style="width:100%" >
+                            <mat-label > Name </mat-label>
+                            <input matInput [(ngModel)]=" key " maxlength="100">
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex="20" class="mr-8" >
+                        <mat-form-field style="width:100%" >
+                            <mat-label>Type</mat-label>
+                            <mat-select [(ngModel)] = " type "  >
+                                <mat-option [value] = " 0 " > All</mat-option>
+                                <mat-option *ngFor = " let row of types " [value] = " row.id " > {{ row?.name }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                           
+                    </div>
+                   
+                    <div fxFlex  >
+                        <button [disabled] = " isSearching " mat-icon-button (click)=" listing()" > <mat-icon  class="mat-icon  s-40 btn-icon-searching-search" >search</mat-icon></button> &nbsp;             
+                    </div>                    
+                </div>
+            </section>
+
+            <section class="listing" >
+
+                <div *ngIf = " isSearching " >
+                    <mat-spinner style="margin:auto" diameter = " 100 " ></mat-spinner>
+                </div>
+                
+                <table *ngIf = " !isSearching && data?.length > 0 " class="proposal-value-table" >
+           
+                    <thead>
+                        <tr>
+                            <th >No.</th>
+                            <th class="text-center">Image</th>
+                            <th >Name</th>
+                            <th >Type</th>
+                            <th >Supplier</th>
+                            <th class="text-center">Unit Price (KHR)</th>
+                            <th >Stork</th>
+                            <th class="text-center">Discount (%)</th>
+                            <th >Created Date/Time</th>
+                            <th >Update/Delete</th>
+                          
+                        </tr>
+                    </thead>
+
+                    <tbody>
+        
+        
+                        <tr *ngFor="let row of data; let i = index; " [attr.data-index]="i">
+
+                            <td >{{ i+1 }}</td>
+                            <td > 
+                                <div class="p-8 text-center" >
+                                    <img [src] = " fileUrl+'/'+row?.image " style="width:80px" />
+                                </div>
+                               
+                            </td>
+                            <td ><b>{{ row?.name }}</b></td>
+                            <td ><span [ngStyle]="{ 'color':'green'}" >{{ row?.type?.name }}</span></td>
+                            <td ><span [ngStyle]="{ 'color':'orange'}" >{{ row?.supplier?.name }}</span></td>
+                            <td class="text-center">{{ row?.unit_price | number }} </td>
+                            <td >{{ row?.stock[0]?.available_stock }} </td>
+                            <td class="text-center">{{ row?.discount | number }}</td>
+                            <td >{{ row?.created_at }}</td>
+                            <td>
+                                <button  mat-icon-button color="accent"  (click) = "openAddStock(row)" matTooltip="Add Stock">
+                                    <mat-icon>playlist_add</mat-icon>
+                                </button>
+                                <button  mat-icon-button color="accent"  (click) = "openEditForm(row)" matTooltip="edit">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+
+                                <button  mat-icon-button color="warn" (click)="onDelete(row)"   matTooltip="delete">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                           
+                        </tr>
+
+                    </tbody>
+        
+                </table>
+
+                <ng-container *ngIf=" data?.length == 0 && !isSearching ">
+                    <div fxLayout="column" fxLayoutAlign="center center" fxflex>
+                        <mat-icon role="img" class="mat-icon notranslate s-100 mb-16 select-message-icon hint-text material-icons mat-icon-no-color" aria-hidden="true"> toc </mat-icon>
+                        <span class="select-message-text hint-text"><span>No Data</span></span>
+                    </div>
+                    
+                </ng-container>
+
+
+
+            </section>
+            
+        </div>
+    </div>
+    
+</div>
+

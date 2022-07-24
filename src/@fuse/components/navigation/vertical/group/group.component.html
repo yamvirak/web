@@ -1,0 +1,21 @@
+<ng-container *ngIf="!item.hidden">
+
+    <!-- <div class="group-title" [ngClass]="item.classes">
+        <span class="hint-text" [translate]="item.translate">{{ item.title }}</span>
+    </div> -->
+
+    <div class="group-items">
+        <ng-container *ngFor="let item of item.children">
+            <!-- *ngIf="fs.checkPermission(item.permission)" -->
+            <ng-container>
+                <fuse-nav-vertical-group *ngIf="item.type=='group'" [item]="item"></fuse-nav-vertical-group>
+                <fuse-nav-vertical-collapsable *ngIf="item.type=='collapsable'"
+                                            [item]="item"></fuse-nav-vertical-collapsable>
+                <fuse-nav-vertical-item *ngIf="item.type=='item'" [item]="item"></fuse-nav-vertical-item>
+            </ng-container>
+
+
+        </ng-container>
+    </div>
+
+</ng-container>

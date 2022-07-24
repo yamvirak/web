@@ -1,0 +1,136 @@
+<!-- ===================== Header =================== -->
+<section class="body-description">
+    <div class="description-title">
+        <h3> <b>4. Summary budget </b></h3>
+    </div>
+
+    <div class="table-active">
+      <table style="width:100%">
+        <tr>
+          <th class="th-title">N0</th>
+          <th class="th-title">Items</th>
+          <th class="th-title">Unit</th>
+          <th class="th-title">Total <br> Unit </th>
+          <th class="th-title">Unit <br>Cost <br>(Riel)</th>
+          <th class="th-title">Total <br>Cost <br>(Riel) </th>
+          <th class="th-title">Cost <br> share by <br>school <br> (Riel) </th>
+          <th class="th-title">Cost share <br> by <br> Company <br> (Riel)</th>
+          <th class="th-title"> Request <br>from SDF <br> (Riel)  </th>
+        </tr>
+        <tr *ngFor="let row of data?.budget?.items; let i = index; " [attr.data-index]="i">         
+          <td class="nb-1">{{ i+1 }}</td> 
+          <td>{{ row?.cost?.name }}</td>                                          
+          <td class="text-center">{{ row?.number_of_units }}</td>
+          <td></td>
+          <td>{{ row?.unit_cost_per_student | number }}</td>
+          <td>{{ (row?.number_of_units) * (row?.unit_cost_per_student) | number }}</td>
+          <td>{{ row?.covered_by_school | number }}</td>  
+          <td>{{ row?.covered_by_company | number }}</td>
+          <td>{{ row?.covered_by_sdf | number }}</td>                            
+        </tr>
+        <tr>
+          <td class="nb-1"></td>          
+          <td colspan="2" class="td-title">Total (Riel) </td>
+          <td class="td-gray"></td>
+          <td class="td-gray"></td>
+          <td>{{ data?.budget?.total | number }}</td>
+          <td>{{ data?.budget?.school | number }}</td>
+          <td>{{ data?.budget?.company | number }}</td>
+          <td>{{ data?.budget?.sdf | number }}</td>          
+        </tr>
+        <tr>
+          <td class="nb-1"></td>          
+          <td colspan="2" class="td-title"> Total % </td>          
+          <td class="td-gray"></td>
+          <td class="td-gray"></td>
+          <td class="td-title">100</td>
+          <td class="td-title"></td>
+          <!-- {{ (data?.budget?.total) }}% -->
+          <td class="td-title">%</td>
+          <td class="td-title">%</td>   
+        </tr>
+        <tr>
+          <td class="nb-1"></td>          
+          <td colspan="2" class="td-title"> Total unit cost per trainee (excluding allowance) </td>          
+          <td></td>
+          <td class="td-gray"></td>
+          <td class="td-gray"></td>
+          <td class="td-gray"></td>
+          <td class="td-gray"></td>
+          <td class="td-gray"></td>   
+        </tr>
+        <tr>
+          <td class="nb-1"></td>          
+          <td colspan="2" class="td-title">  Total unit cost per trainee (excluding allowance) </td>          
+          <td></td>
+          <td class="td-gray"></td>
+          <td class="td-gray"></td>
+          <td class="td-gray"></td>
+          <td class="td-gray"></td>
+          <td class="td-gray"></td>   
+        </tr>
+      </table>
+    </div>
+    <div>
+      <div class="footer-p">
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*Total unit cost per trainee (excluding allowance)= (Total cost -Total trainee’s allowance)/Total number of trainees</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*Unit cost requested from SDF per trainee = Total cost requested from SDF/ Total number of trainees</p>
+      </div>
+    
+    </div>
+</section>
+ 
+<section  class="body-description">
+  <div class="description-title commitment">
+    <h3> <b>5. Commitment to achieve the Key Performance Indicators (KPIs) for SDF as following៖</b></h3>
+    <div class="box-tick circle">
+      <p><u>{{ data?.overview?.beneficiary?.name }}</u></p>     
+    </div>
+  </div>
+  <div *ngFor="let row of data?.kpi?.items let i = index; " [attr.data-index]="i">
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ i+1 }}- {{ row?.kpi_item?.name }} <b>{{ row?.proposed_value }}</b>% {{ row?.kpi_item?.description }}. </p>
+  </div>
+</section>
+ 
+<section class="body-description">
+  <div class="description-title commitment">
+    <h3> <b>6. Comments / Suggestions / Additional information, if any៖</b></h3>
+    <p style="margin-left: 0.8cm;">{{ data?.feedback?.content }}</p>
+    <div class="solid-two mt-6"></div>
+      <p>Drop-out rate only includes the trainees who quit studying by him or herself (not include trainees who quit working or
+        terminated trainees because of excessive absence, indiscipline, etc.) </p>
+      <!-- <p>#</p> -->
+      <p>Drop-out rate only includes the trainees who quit studying by him or herself (not include terminated trainees because of
+        excessive absence, indiscipline, etc.) </p>
+  </div>
+</section>
+ 
+ <section class="body-description">
+   <div class="description-title">      
+    <h3> <b>Please also attach the following document៖</b></h3>
+    <div class="box-tick">
+      <p>MOU/Letter between school/training provider and partnered company/industry</p>
+      <p>Registration and tax certificate of the company and school/organization/training provider </p>
+      <p>Contact details of the companies/industries if there are more than one</p>
+      <p> Contact details of the school/organization/training provider if there are more than one</p>
+      <p> Bank account details of school/organization/ training provider or company</p>
+      <p> Training plan </p>
+      <p>Trainers’ CV(s)</p>
+      <p>Trainee’s list (For only Upskilling training)</p>
+    </div>
+    <hr>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If you have any inquiries, please contact SDF through below channels៖</p>
+    <div class="contact-info">
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Phone៖ 012 635 294 </p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Facebook៖ facebook.com/CambodiaSkillsDevelopmentFund</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Telegram៖ 012 635 294</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email៖ info@sdfcambodia.org</p>
+    </div>
+    <div class="end-footer">
+      <h3> <b>We look forward to receiving your training proposal application. Please do not  </b></h3>
+      <h3> <b>hesitate to contact our help desk team.</b></h3>
+    </div>
+
+   </div>
+ </section>
+ 

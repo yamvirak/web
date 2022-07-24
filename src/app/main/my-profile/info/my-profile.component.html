@@ -1,0 +1,11 @@
+    <mat-tab-group>
+        <mat-tab label="Overveiw">
+        <div *ngIf="data">
+          <overview [data]="data"></overview>
+        </div>
+      </mat-tab>
+        <mat-tab label="Change Password"><change-password>  </change-password></mat-tab>
+        <!-- <mat-tab label="Security"><security> </security></mat-tab> -->
+    </mat-tab-group>
+    <mat-progress-bar *ngIf=" isSearching " mode="query" color="accent"></mat-progress-bar>
+    

@@ -1,0 +1,40 @@
+@import "src/@fuse/scss/fuse";
+
+.page-content{
+    width:100%; 
+}
+
+.tab-title{
+    font-size: 18px;
+}
+
+.content-cnt {
+
+    .main-widget {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content {
+        display: flex;
+        flex: 1 1 auto;
+        padding: 32px;
+        min-width: 0;
+
+        .tab-content{
+
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid;
+            border-color: rgba(0, 0, 0, 0.12);
+        }
+
+        @include media-breakpoint('lt-lg') {
+            flex-direction: column;
+        }
+
+       
+    }
+
+}

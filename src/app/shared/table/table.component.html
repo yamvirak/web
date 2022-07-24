@@ -1,0 +1,47 @@
+<table style="margin-bottom: 20px;" mat-table [dataSource]="matDataSource" matTableResponsive matSort class="mat-elevation-z8 ng-star-inserted" (matSortChange)="onSort($event)">
+    <div *ngIf="tableColumnInfo">
+        <ng-container *ngFor="let item of tableColumnInfo; index as tableIdex;">
+            <!-- Position Column -->
+            <ng-container [matColumnDef]="item.name">
+                <!-- sort sortable field -->
+                <ng-container *ngIf="item.sortable">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ item.label }}</th>
+                </ng-container>
+
+                <!-- not sortable field -->
+                <ng-container *ngIf="!item.sortable">
+                    <th mat-header-cell *matHeaderCellDef>{{ item.label + '.' }}</th>
+                </ng-container>
+
+                <!-- display value -->
+                <td mat-cell *matCellDef="let element; let i = index;">
+                    <!-- show index -->
+                    <!-- <div *ngIf="item.name === 'tblIndex'">
+                      <span>{{ (i + 1) }}</span>
+                    </div> -->
+
+                    <!-- implicit element to templateRef of tableColumnInfo -->
+                    <ng-container *ngTemplateOutlet="item.template; context: {  $implicit: element, field: item.name  }">
+                    </ng-container>
+
+                    <ng-container *ngIf="!item.template">
+                        <a style="cursor: pointer;" (click)="onView(element[primaryKey || tableColumnInfo[1].name])" *ngIf="canViewRow">{{ getValueBase(element, item.name) || ''  }}</a>
+                        <span *ngIf="!canViewRow">{{ getValueBase(element, item.name) || ''  }}</span>
+                    </ng-container>
+
+                    <!-- show field action with button delete and update -->
+                    <div class="action" *ngIf="item.name === 'action'">
+                        <button mat-raised-button color="primary" *ngIf="canUpdateRow" (click)="onUpdate(element[primaryKey || tableColumnInfo[1].name])">Update</button>
+                        <button mat-raised-button color="danger" *ngIf="canDeleteRow" (click)="onDelete(element[primaryKey || tableColumnInfo[1].name])">Delete</button>
+                    </div>
+
+                </td>
+            </ng-container>
+        </ng-container>
+    </div>
+    <!-- determine whether which fields are displayed -->
+    <ng-container *ngIf="displayedColumns">
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [@animate]="{value:'*',params:{y:'100%'}}"></tr>
+    </ng-container>
+</table>

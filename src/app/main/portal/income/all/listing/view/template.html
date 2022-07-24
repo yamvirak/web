@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>View Expenses: {{ data?.name }}</h2>
+<mat-divider></mat-divider>
+
+<mat-dialog-content class="mat-typography" style="width: 700px;">
+   
+    <form name="form" [formGroup]="form" (ngSubmit)="save()" fxLayout="row wrapper">
+        <!-- ===============================================================>> Type_id -->
+        <mat-form-field appearance="outline" fxFlex="100" >
+            <mat-label>Type_id</mat-label>
+            <input matInput formControlName="type_id" required>
+            <mat-icon matSuffix class="secondary-text">date_range</mat-icon>
+        </mat-form-field>
+
+         <!-- ===============================================================>> Type -->
+         <mat-form-field appearance="outline" fxFlex="100" >
+            <mat-label>Type</mat-label>
+            <mat-select formControlName = "type_id" >
+                <mat-option *ngFor = " let row of types " [value] = " row.id " > {{ row?.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <!-- ===============================================================>> Total -->
+        <mat-form-field appearance="outline" fxFlex="100" >
+            <mat-label>Total</mat-label>
+            <input matInput  formControlName="total" required>
+            <mat-icon matSuffix class="secondary-text"> attach_money </mat-icon>
+        </mat-form-field>
+
+        
+
+    </form>
+
+    <mat-divider></mat-divider>
+    
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions align="end">
+    
+
+    
+    <button mat-button [disabled] = " isSaving " [mat-dialog-close]=" dataHasChanged "  cdkFocusInitial>Close</button>
+
+</mat-dialog-actions>

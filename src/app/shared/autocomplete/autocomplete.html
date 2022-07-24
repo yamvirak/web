@@ -1,0 +1,17 @@
+
+  <mat-form-field appearance="outline" fxFlex="">
+    <mat-icon class="material-icons">{{ icon }}</mat-icon>
+    <input matInput
+      (blur) = " blur($event) "
+      [placeholder]=" placeholder "
+     
+      [matAutocomplete]="auto"
+      [formControl]="ctrl">
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected) = " select($event) " [displayWith]="displayFn" (closed) = " close($event) ">
+        <mat-option *ngFor="let row of filteredData | async" [value]=" row "  >
+        <!-- <img class="example-option-img" aria-hidden [src]="state.flag" height="25"> -->
+        <span>{{ row.kh_name }}</span> 
+        <!-- <small>Population: {{state.population}}</small> -->
+        </mat-option>
+      </mat-autocomplete>
+  </mat-form-field>

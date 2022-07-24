@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Crop your image.</h1>
+<div mat-dialog-content>
+    <image-cropper 
+    [imageChangedEvent]="imageChangedEvent" 
+    [maintainAspectRatio]="false" 
+    [aspectRatio]="4 / 3" format="png" 
+    (imageCropped)="imageCropped($event)" 
+    (imageLoaded)="imageLoaded()" 
+    (cropperReady)="cropperReady()" 
+    (loadImageFailed)="loadImageFailed()"
+></image-cropper>
+</div>
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]=" result " cdkFocusInitial>Ok</button>
+    <button mat-button (click)="close()">Cancel</button>
+</div>

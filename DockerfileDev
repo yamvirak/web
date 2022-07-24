@@ -1,0 +1,11 @@
+FROM node:10.15.0-alpine
+
+RUN npm config set unsafe-perm true
+RUN npm install -g @angular/cli@8.1.2
+COPY . ./usr
+WORKDIR /usr
+RUN npm install
+#RUN npm install typescript@'>=2.4.2 <2.7.0'
+
+# RUN npm rebuild node-sass
+# RUN  ng serve

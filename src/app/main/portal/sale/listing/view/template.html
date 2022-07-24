@@ -1,0 +1,73 @@
+<h2 mat-dialog-title>Receipt <b style="color:blue" >#{{ data?.receipt_number }}</b></h2>
+<mat-divider></mat-divider>
+
+<mat-dialog-content class="mat-typography" style="width: 700px;">
+    <div fxLayout="row" class="pt-16 pb-16">
+        <div fxFlex="50" >
+            Created : {{ data?.created_at }} <br />
+        </div>
+        <div fxFlex="50" >
+            Cashier : {{ data?.cashier?.name }}
+        </div>
+    </div>
+   
+    <mat-divider></mat-divider>
+
+    <div fxLayout="row" class="pt-16 pb-16" >
+        <table class="proposal-value-table" >
+            
+            <thead>
+                <tr>
+                    <th >No.</th>
+                    <th class="">Product</th>
+                    <th class="text-right">Unit Price (KHR)</th>
+                    <th class="text-right">QTY</th>
+                    <th class="text-right">Total</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+
+                <tr *ngFor="let row of data?.details; let i = index; " [attr.data-index]="i">
+
+                    <td >{{ i +1 }}</td>
+                    <td >{{ row?.product?.name }} </td>
+                    <td class="text-right">{{ row?.unit_price | number }}</td>
+                    <td class="text-right">{{ row?.qty | number }}</td>
+                    <td class="text-right">{{ row?.unit_price * row?.qty | number }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan=4 class="text-right">Total Price (KHR):</td>
+                    <td class="text-right"><b>{{ data?.total_price | number }}</b></td>
+                </tr>
+
+                <tr>
+                    <td  colspan=4  class="text-right">Discount (%):</td>
+                    <td class="text-right"><b>{{ data?.discount | number }}</b></td>
+                </tr>
+
+                <tr>
+                    <td  colspan=4 class="text-right">Amount To Pay (KHR):</td>
+                    <td class="text-right"><b style="color:green" >{{ data?.total_price | number }}</b></td>
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+    
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions align="end">
+    
+    <button mat-button   cdkFocusInitial>
+        <span  >Print</span>
+    </button>
+    
+    <button mat-button  [mat-dialog-close]=" true "  cdkFocusInitial>Close</button>
+
+</mat-dialog-actions>

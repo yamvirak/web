@@ -1,0 +1,143 @@
+
+<div class="content-cnt page-layout blank">
+
+    <div   class="header  p-24 h-80" fxLayout="row" fxLayoutAlign="start center"  >
+        <div fxFlex="50"  >
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="secondary-text s-18">home</mat-icon>
+                <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+                <span class="secondary-text">Sales</span>
+            </div>
+        </div>
+
+        <div fxFlex="50" class="text-right"  >
+            <button  mat-stroked-button color="accent" [routerLink]=" ['/pos'] "  >
+                <mat-icon class="material-icons">add</mat-icon><span>New Sale</span> 
+            </button>
+        </div>
+    </div>
+
+    <div class="content"  >
+        <div  class="tab-content p-24">
+
+            <section class="filter" >
+                <div fxLayout="row " fxLayoutAlign="start center"  >
+
+                    <div fxFlex="20" class="mr-8" >
+                        <mat-form-field style="width:100%" >
+                            <mat-label > Receipt Number </mat-label>
+                            <input matInput [(ngModel)]=" name " maxlength="100">
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex="20" class="mr-8" >
+                        <mat-form-field style="width:100%" >
+                            <mat-label>Status</mat-label>
+                            <mat-select [(ngModel)] = " status "  >
+                                <mat-option [value] = " 0 " > All</mat-option>
+                                <mat-option [value] = " 1 " > Paid</mat-option>
+                                <mat-option [value] = " 2 " > Unpaid</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                           
+                    </div>
+
+                    <div fxFlex="20" class="mr-8" >
+                        <mat-form-field style="width:100%" >
+                            <mat-label>Branch</mat-label>
+                            <mat-select [(ngModel)] = " status "  >
+                                <mat-option [value] = " 0 " > All</mat-option>
+                                <mat-option [value] = " 1 " > SR</mat-option>
+                                <mat-option [value] = " 2 " > KPS</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                           
+                    </div>
+                   
+                    <div fxFlex  >
+                        <button [disabled] = " isSearching " mat-icon-button (click)=" listing()" > <mat-icon  class="mat-icon  s-40 btn-icon-searching-search" >search</mat-icon></button> &nbsp;             
+                    </div>                    
+                </div>
+            </section>
+
+            <section class="listing" >
+
+                <div *ngIf = " isSearching " >
+                    <mat-spinner style="margin:auto" diameter = " 100 " ></mat-spinner>
+                </div>
+                
+                <ng-container *ngIf = " !isSearching && data?.length > 0 "  >
+                    <table class="proposal-value-table" >
+            
+                        <thead>
+                            <tr>
+                                <th >Number.</th>
+                                <th class="text-right">Total Price (KHR)</th>
+                                <th class="text-right">Discount (%)</th>
+                                <th class="">&nbsp; &nbsp; Date</th>
+                                <th class="">Cashier</th>
+                                <th ></th>
+                            
+                            </tr>
+                        </thead>
+
+                        <tbody>
+            
+            
+                            <tr *ngFor="let row of data; let i = index; " [attr.data-index]="i">
+
+                                <td ><b style="color:blue" >{{ row?.receipt_number }}</b></td>
+                                <td class="text-right" >{{ row?.total_price | number }} </td>
+                                <td class="text-right">{{ row?.discount | number }}</td>
+                                <td >
+                                    <div class="pl-16" >
+                                        <span>Created: {{ row?.updated_at }} </span><br />
+                                        <span *ngIf = " row?.paid_at " >Paid: {{ row?.paid_at }}</span>
+                                    </div>
+                                </td>
+                                <td >{{ row?.cashier?.name }} (SR)</td>
+                                <td>
+                                    <button  mat-icon-button color="accent"  (click) = "viewReceipt(row)" matTooltip="edit">
+                                        <mat-icon>remove_red_eye</mat-icon>
+                                    </button>
+
+                                    <button  mat-icon-button color="accent"  (click) = "viewReceipt(row)" matTooltip="Print">
+                                        <mat-icon>print</mat-icon>
+                                    </button>
+
+                                    <button mat-icon-button color="warn" (click)="onDelete(row)"   matTooltip="delete">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            
+                            </tr>
+
+                        </tbody>
+            
+                    </table>
+
+                    <div fxLayoutAlign="end end">
+                        <app-paginator  [length]="total" [page]="page" [limit]="limit" (pageChanged)="onPageChanged($event)"></app-paginator>
+                    </div>
+                </ng-container>
+
+                
+
+                <ng-container *ngIf=" data?.length == 0 && !isSearching ">
+                    <div fxLayout="column" fxLayoutAlign="center center" fxflex>
+                        <mat-icon role="img" class="mat-icon notranslate s-100 mb-16 select-message-icon hint-text material-icons mat-icon-no-color" aria-hidden="true"> toc </mat-icon>
+                        <span class="select-message-text hint-text"><span>No Data</span></span>
+                    </div>
+                </ng-container>
+
+
+
+
+
+            </section>
+            
+        </div>
+    </div>
+    
+</div>
+

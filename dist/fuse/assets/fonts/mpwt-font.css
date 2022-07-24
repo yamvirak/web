@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'Siemreap';
+  src: url('Siemreap.eot');
+  src: url('Siemreap.woff2') format('woff2'),
+       url('Siemreap.woff') format('woff'),
+       url('Siemreap.ttf') format('truetype'),
+       url('Siemreap.svg#KhmerOSsys') format('svg'),
+       url('Siemreap.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}

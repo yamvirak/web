@@ -1,0 +1,75 @@
+
+
+<div fxLayout="row wrapper" mat-dialog-title >
+  <div fxFlex="50" >
+    <h2 >Staff: {{ data?.name }}</h2>
+  </div>
+  <div fxFlex="50" class="text-right mt-4"  >
+    <button  mat-stroked-button color="accent"   matTooltip="Add New">
+        <mat-icon>add</mat-icon>
+    </button>
+
+  </div>
+</div>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-content class="mat-typography" style="width: 700px;">
+    
+    <ng-container *ngIf = " data?.staffs?.length > 0 " >
+        <table class="proposal-value-table" >
+                
+            <thead>
+                <tr>
+                    <th >No.</th>
+                    <th class="">Name</th>
+                    <th class="">Phone</th>
+                    <th class="">Position</th>
+                    <th class="">Date</th>
+                    <th class=""></th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+
+                <tr *ngFor="let row of data?.staffs; let i = index; " [attr.data-index]="i">
+
+                    <td >{{ i +1 }}</td>
+                    <td >{{ row?.admin?.user?.name }} </td>
+                    <td >{{ row?.admin?.user?.phone }} </td>
+                    <td >
+                        <span *ngIf = " row?.role == 1 ">Branch Manager</span>
+                        <span  *ngIf = " row?.role != 1 " >Staff</span>
+                    </td>
+                    <td >{{ row?.created_at }}</td>
+                    <td class="text-right">
+                        <button  mat-icon-button color="warn"    matTooltip="delete">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+    </ng-container>
+
+    <ng-container  *ngIf = " data?.staffs?.length == 0 " >
+        <div fxLayout="column" fxLayoutAlign="center center" fxflex>
+            <mat-icon role="img" class="mat-icon notranslate s-100 mb-16 select-message-icon hint-text material-icons mat-icon-no-color" aria-hidden="true"> toc </mat-icon>
+            <span class="select-message-text hint-text"><span>No Staff Yet!!</span></span>
+        </div>
+    </ng-container>
+  
+    <mat-divider></mat-divider>
+    
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions align="end">
+ 
+    <button mat-button [disabled] = " isSaving "   cdkFocusInitial>Close</button>
+
+</mat-dialog-actions>

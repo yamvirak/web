@@ -1,0 +1,13 @@
+<!-- ===================== Header =================== -->
+<section class="body-scheme ">
+    <div class="rationale">
+            <h3> <b>2. Rationale of joint training proposal</b></h3>
+            <h3>Please describe narratively your training proposal on ៖</h3>
+    </div>
+    <div class="narratively" *ngFor="let row of data?.statment?.items;">
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ row?.question?.question }}</p>
+        <div class="answer-narratively">
+            <p>{{ row?.answer }}</p>
+        </div>
+    </div>
+</section>

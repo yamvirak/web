@@ -1,0 +1,86 @@
+<h2 mat-dialog-title>Receipt <b style="color:green">#{{ data?.receipt_number }}</b></h2>
+<mat-dialog-content class="mat-typography" style="min-width:600px" >
+    <div>
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex="50"  >
+                <mat-form-field  appearance="outline"  >
+
+                    <mat-label>Cashier</mat-label>
+                    <input matInput [value] = " data?.cashier?.name " >
+                    <mat-icon matSuffix class="secondary-text">person</mat-icon>
+                   
+                </mat-form-field>
+            </div>
+            <div fxFlex="50"  >
+                <mat-form-field  appearance="outline"  >
+
+                    <mat-label>Date</mat-label>
+                    <input matInput [value] = " data?.ordered_at | date:'medium' " >
+                    <mat-icon matSuffix class="secondary-text">date_range</mat-icon>
+                   
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- <div fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex="50"  >
+                d
+            </div>
+            <div fxFlex="50"  >
+                f
+            </div>
+        </div> -->
+    </div>
+
+    <div>
+        <div   class="box box-default table-box table-responsive mdl-shadow--2dp">
+           
+            <table  class="mdl-data-table">
+                
+                <thead>
+                    <tr>
+                        <th class="mdl-data-table__cell--non-numeric">#</th>
+                        <th class="mdl-data-table__cell--non-numeric">Product</th>
+                        <th class="text-right">Unit Price (KHR)</th>
+                        <th class="text-right">QTY</th>
+                        <th class="text-right">Total (KHR)</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr  *ngFor = "let row of data?.details; let i = index; " [attr.data-index]="i">
+                        <td class="mdl-data-table__cell--non-numeric">{{i+1}}</td>
+                        <td class="mdl-data-table__cell--non-numeric ">
+                            {{ row?.product?.name }}
+                        </td>
+                        <td class="text-right">
+                            {{ row?.unit_price | number }}
+                        </td>
+                        <td class="text-right">
+                            {{ row?.qty }}
+                        </td>
+                        <td class="text-right">
+                            {{ row?.unit_price*row?.qty | number }}
+                        </td>
+                    </tr>
+
+                    <tr >
+
+                        <td class="text-right" colspan="4" >Total (KHR)</td>
+                        <td class="text-right">
+                            <b class="total" >{{ data?.total_price | number }}</b>
+                        </td>
+                        
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button >Print</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Close</button>
+</mat-dialog-actions>

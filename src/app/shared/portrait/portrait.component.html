@@ -1,0 +1,17 @@
+<div class=" picture " (click)=" selectFile() ">
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxFlex="1 0 auto">
+        <div fxFlex="100">
+            <img style="width: 300px" class="portrait img-center" [src]="src" />
+        </div>
+        <div fxFlex="100" class="pr-4" fxFlex.xs="55">
+            <div class="upload text-center m-bottom">
+                <span> {{ title }} </span>
+                <mat-icon class="material-cloud">backup</mat-icon>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<input [id]=" 'portrait-file-'+index " class="portrait-file" type="file" (change)="fileChangeEvent($event)" />

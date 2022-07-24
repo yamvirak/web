@@ -1,0 +1,98 @@
+
+<div class="content-cnt page-layout blank">
+
+    <div  class="header  p-24 h-80" fxLayout="row" fxLayoutAlign="start center"  >
+        <div fxFlex="50"  >
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="secondary-text s-18">home</mat-icon>
+                <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+                <span class="secondary-text">Branch</span>
+            </div>
+        </div>
+
+        <div fxFlex="50" class="text-right"  >
+            <button  mat-stroked-button color="accent" (click) = " openCreateForm() ">
+                <mat-icon class="material-icons">add</mat-icon><span>Create Branch</span> 
+            </button>
+        </div>
+    </div>
+
+    <div class="content" >
+        <div  class="tab-content p-24">
+
+            <section class="filter">
+                <div fxLayout="row " fxLayoutAlign="start center"  >
+
+                    <div fxFlex="20" class="mr-8" >
+                        <mat-form-field style="width:100%" >
+                            <mat-label > Name </mat-label>
+                            <input matInput [(ngModel)]=" name " maxlength="100">
+                        </mat-form-field>
+                    </div>
+                   
+                    <div fxFlex  >
+                        <button [disabled] = " isSearching " mat-icon-button (click)=" listing()" > <mat-icon  class="mat-icon  s-40 btn-icon-searching-search" >search</mat-icon></button> &nbsp;             
+                    </div>                    
+                </div>
+            </section>
+
+            <section class="listing" >
+
+                <div *ngIf = " isSearching " >
+                    <mat-spinner style="margin:auto" diameter = " 100 " ></mat-spinner>
+                </div>
+                
+                <table *ngIf = " !isSearching " class="proposal-value-table" >
+           
+                    <thead>
+                        <tr>
+                            <th >No.</th>
+                            <th >Name</th>
+                            <th >Phone</th>
+                            <th >Address</th>
+                            <th >N. of Users</th>
+                            <th >Created Date/Time</th>
+                            <th ></th>
+                          
+                        </tr>
+                    </thead>
+
+                    <tbody>
+        
+        
+                        <tr *ngFor="let row of data; let i = index; " [attr.data-index]="i">
+
+                            <td >{{ i+1 }}</td>
+                            <td >{{ row?.name }}</td>
+                            <td >{{ row?.phone }} </td>
+                            <td >{{ row?.address }}</td>
+                            <td >{{ row?.staffs?.length }}</td>
+                            <td >{{ row?.created_at }}</td>
+                            <td class="text-right" >
+
+                                <button  mat-icon-button color="accent"  (click) = "openStaffList(row)" matTooltip="Staff">
+                                    <mat-icon>group</mat-icon>
+                                </button>
+
+                                <button  mat-icon-button color="accent"  (click) = "openEditForm(row)" matTooltip="edit">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+
+                                <button  mat-icon-button color="warn" (click)="onDelete(row)"   matTooltip="delete">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                           
+                        </tr>
+
+                    </tbody>
+        
+                </table>
+
+            </section>
+            
+        </div>
+    </div>
+    
+</div>
+

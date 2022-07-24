@@ -1,0 +1,162 @@
+
+<div class="content-cnt page-layout blank">
+
+    <div  class="header  p-24 h-80" fxLayout="row" fxLayoutAlign="start center"  >
+        <div fxFlex="50"  >
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="secondary-text s-18">home</mat-icon>
+                <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+                <span class="secondary-text">POS</span>
+            </div>
+        </div>
+
+        <div fxFlex="50" class="text-right"  >
+           
+        </div>
+    </div>
+
+    <div class="content" >
+        <div  class="tab-content p-24" fxLayout="row" fxLayoutAlign="start start"  >
+
+            <!-- =========================================================================>> Product Listing -->
+            <div fxFlex="65" >
+                <mat-tab-group>
+                    
+                    <ng-container *ngFor = " let type of data ">
+                        <mat-tab [label] = " type?.name ">
+
+                            <div fxLayout="row wrapper" class="mt-24"  >
+                                
+                                <ng-container *ngFor = " let product of type.products " >
+                                    <div fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25" >
+
+                                        <product-item [data] = " product " (result) = " getOutput($event) " ></product-item>
+                                        
+                                    </div>
+                                </ng-container>
+
+                                <span *ngIf = " type.products.length == 0 " >No Products!!!</span>
+                                
+                            </div>
+
+                        </mat-tab>
+                    </ng-container>
+                   
+
+                    
+                </mat-tab-group>
+            </div>
+
+            <!-- =========================================================================>> Cart -->
+            <div fxFlex="35"  class="p-8" >
+                <!-- Header -->
+                <div>
+                    Cashier: <b>{{ cashier }}</b>
+                </div>
+
+                <div>
+                    <table *ngIf=" cart?.length > 0"  class="proposal-value-table">
+                        <thead>
+                        <tr>
+        
+                            <th class="title">ផលិតផល</th>
+                            <th class="title">ចំនួន(QTY)</th>
+                            <th class="text-right">តម្លៃ (KHR) </th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+        
+                            <tr *ngFor="let item of cart; let i = index; ">
+            
+                                <td class="title">
+                                    {{ item?.name }} <br> 
+                                    <span style="font-style: italic; font-size: 12px;">{{ item?.unit_price | number }}</span>
+                                </td>
+            
+                                <td>
+            
+                                    <div class="qty-cnt">
+                                        <input 
+
+                                            type="number" 
+                                            [(ngModel)]=" item.temp_qty  " 
+                                            (blur)="blur($event, i)" 
+                                            min="1" 
+                                            max="1000" 
+                                            class="qty-input" >
+
+                                    </div>
+            
+                                </td>
+                            
+                                <td class="text-right">
+                                    {{ item?.unit_price*item?.qty | number }}
+                                </td>
+                                <td>
+                                    <button color="warn"  class="remove" mat-icon-button (click)="remove(i)">
+                                    <mat-icon class="material-icons mdi-sm">delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td class="text-right" colspan=2>តំលៃ​​សរុប (KHR): </td>
+                                <td class="text-right"><b>{{ totalPrice | number }}</b></td>
+                            
+                            </tr>
+
+                            <tr>
+                                <td class="text-right" colspan=2>បញ្ចុះតំលៃ (%): </td>
+                                <td class="text-right">
+                                    <input 
+
+                                            type="number" 
+                                            [(ngModel)] = " discount "
+                                            min="0" 
+                                            max="100" 
+                                            class="qty-input" >
+                                </td>
+                                <td></td>
+                            
+                            </tr>
+
+
+                            <tr>
+                                <td class="text-right" colspan=2>ទឹកប្រាក់ត្រូវបង់ (KHR): </td>
+                                <td class="text-right"><b>{{ totalPrice*(1 - discount/100) | number }}</b></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-right" colspan=3>
+                                    <mat-spinner style="margin:0 auto; " [diameter] = 30  *ngIf = " isOrderBeingMade "  ></mat-spinner>
+                                    <button mat-raised-button color="accent" type="button" *ngIf = " !isOrderBeingMade "  (click) = " checkOut() " >
+                                        <mat-icon class="material-icons">save</mat-icon> Order
+                                    </button>
+                                </td>
+                                <td></td>
+                            </tr>
+    
+                        </tbody>
+                    </table>
+                
+                    <ng-container *ngIf=" cart?.length == 0 ">
+                        <div fxLayout="column" fxLayoutAlign="center center"  fxFlex.gt-sm="100">
+                            <mat-icon role="img" class="mat-icon notranslate s-100 pb-4 select-message-icon hint-text material-icons mat-icon-no-color" aria-hidden="true"> toc </mat-icon>
+                            <span class="select-message-text hint-text"><span>គ្មានទន្និន័យ</span></span>
+                        </div>
+                    </ng-container>
+                </div>
+
+                <!-- Footer -->
+                <div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+</div>
+

@@ -1,0 +1,98 @@
+.big-header{
+    display: inline-block;
+}
+
+.header-title h2{
+    line-height: 12px;
+    margin: 14px auto;
+    padding-left: 1cm;
+    float: right;
+    width: 70%;
+}
+.title-above{
+    color: #016cb8;
+    font-weight: 380;
+    margin-left: 1cm;
+}
+.main-title h3{
+    display: inline-block;
+}
+.main-left{
+    float: left;
+    width: 50%;
+}
+.main-right{
+    float: right;
+}
+.title-below{
+    font-weight: 350;
+}
+.scheme{
+    color: darkmagenta;
+}
+/* Solid border */
+hr.solid {
+    border-top: 2px solid #bbb;
+    border-color: #016cb8;
+}
+.main-title h6{
+    font-weight: 400;
+    text-align: center;
+}
+
+.box-border{
+    border: 1px #016cb8;
+    border-style: solid;
+    padding: 15px;
+    width: 100%;
+}
+.box-border p{
+    margin-left: 15px;
+}
+
+.box-border p:before{
+    content: ' \25CF';
+    font-size: 10px;
+}
+.cost{
+    margin-left: 0.8cm;
+}
+.cost p:before{
+    content: ' \25CB';
+    font-size: 10px;
+}
+.box-tick p:before{
+    content: ' \2610';
+    font-size: 40px;
+}
+.box-tick{
+    margin-left: 2.8cm;
+    line-height: 8px;
+}
+.training-model p:before{
+    content: ' \0020';
+}
+.training-model{
+    margin-left: 2.8cm;
+}
+.solid-two {
+    border-top: 2px solid #bbb;
+    width: 30%;
+    margin-top:30px;
+}
+.footer p{
+    float: left;
+}
+.footer-left p{
+    text-align: left;
+}
+.footer-right p{
+    text-align: right;
+}
+.big-header .text-left{
+    width: 30%;
+    float: left;
+}
+.footer-summary{
+}
+

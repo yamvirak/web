@@ -1,0 +1,75 @@
+
+<div class="content-cnt page-layout blank">
+
+    <div  class="header  p-24 h-80" fxLayout="row" fxLayoutAlign="start center"  >
+        <div fxFlex="50"  >
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="secondary-text s-18">home</mat-icon>
+                <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+                <span class="secondary-text">Product Type</span>
+            </div>
+        </div>
+
+        <div fxFlex="50" class="text-right"  >
+            <button  mat-stroked-button color="accent" (click) = " openCreateForm() ">
+                <mat-icon class="material-icons">add</mat-icon><span>Create New Product Type</span> 
+            </button>
+        </div>
+    </div>
+
+    <div class="content" >
+        <div  class="tab-content p-24">
+
+       
+
+            <section class="listing" >
+
+                <div *ngIf = " isSearching " >
+                    <mat-spinner style="margin:auto" diameter = " 100 " ></mat-spinner>
+                </div>
+                
+                <table *ngIf = " !isSearching " class="proposal-value-table" >
+           
+                    <thead>
+                        <tr>
+                            <th >No.</th>
+                            <th >Name</th>
+                            <th class="text-right">N. Of Products</th>
+                            <th class="text-right" ></th>                                                                
+                          
+                        </tr>
+                    </thead>
+
+                    <tbody>
+        
+        
+                        <tr *ngFor="let row of data; let i = index; " [attr.data-index]="i">
+
+                            <td >{{ i+1 }}</td>
+                            <td >{{ row?.name }}</td>
+                            <td class="text-right">0</td>               
+                            
+                            <td>
+                                &nbsp; 
+                                <button  mat-icon-button color="accent"  (click) = "openEditForm(row)" matTooltip="edit">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+
+                                <button  mat-icon-button color="warn" (click)="onDelete(row)"   matTooltip="delete">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                           
+                        </tr>
+
+                    </tbody>
+        
+                </table>
+
+            </section>
+            
+        </div>
+    </div>
+    
+</div>
+

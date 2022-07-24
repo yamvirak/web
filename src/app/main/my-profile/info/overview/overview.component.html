@@ -1,0 +1,67 @@
+<section class="content-frm">
+    
+    <form class=" p-24 " fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="form" [formGroup]="form" (submit)=" submit() ">
+
+        <div 
+        fxLayout="row" 
+        fxLayout.xs="column" 
+        fxLayoutAlign="start center" 
+        fxFlex="1 0 auto"
+        >
+            <div fxFlex="30" class="pr-4">
+                <app-portrait 
+                    [mode] = " mode "
+                    [title]=" "
+                    [index]=" 1 " 
+                    [src]=" src " 
+                    (srcChange)='srcChange($event, 1)'></app-portrait>
+            </div>
+            <div fxFlex="70" class="pr-4" fxLayout="column" fxFlex.xs="100">
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name" required>
+                    <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                    <mat-error>
+                        <span *ngIf="form.get('name').hasError('required')">Please enter your name</span>  
+                        <span *ngIf="form.get('name').hasError('servererror')">{{ form.get('name').errors.servererror }}</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Phone</mat-label>
+                    <input matInput formControlName="phone" required>
+                    <mat-icon matSuffix class="secondary-text">smartphone</mat-icon>
+                    <mat-error>
+                        <span *ngIf="form.get('phone').hasError('required')">Please enter your phone number</span>  
+                        <span *ngIf="form.get('phone').hasError('pattern')">សូម​បញ្ចូល​លេខទូរស័ព្ទតាមទម្រង់ ឧទាហរណ៍: 0964737335 </span>  
+                        <span *ngIf="form.get('phone').hasError('servererror')">{{ form.get('phone').errors.servererror }}</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email">
+                    <mat-icon matSuffix class="secondary-text">email</mat-icon>
+                    <!-- <mat-error>
+                        <span *ngIf="form.get('email').hasError('required')">Please enter your email</span>  
+                        <span *ngIf="form.get('email').hasError('email')">Please enter correct email.  E.g: admin@mpwt.gov.kh</span>  
+                        <span *ngIf="form.get('email').hasError('servererror')">{{ form.get('email').errors.servererror }}</span>
+                    </mat-error> -->
+                </mat-form-field>
+
+            </div>
+
+        </div>
+
+        <mat-divider></mat-divider>
+        <mat-progress-bar *ngIf="isLoading" mode="buffer"></mat-progress-bar>
+        <div fxLayout.xs="column"  fxLayout="row" fxLayoutAlign="end center" fxFlex="1 0 auto" class="pt-20 ">
+            <button  mat-raised-button color="accent" [disabled]=" form.invalid || isLoading " >
+                 <mat-icon  class="material-icons">edit</mat-icon>Update
+            </button>
+
+        </div>
+
+    </form>
+</section>

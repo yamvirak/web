@@ -1,0 +1,33 @@
+<!-- ===================== Header =================== -->
+<section class="body-scheme ">
+    <div class="contact-detail">
+        <h3> <b>1. Contact details</b></h3>
+    </div>
+
+    <div class="company-industry">
+        <h3> &nbsp;&nbsp;Company / Industry <span class="company-italics">(If there are more than one partnered company / Industry, please use this format and attach it as appendix)</span></h3>
+        <div class="company-info">
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Company ៖ {{ data?.school_company?.companies[0]?.company?.en_name }}</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sector ៖ {{ data?.school_company?.companies[0]?.company?.type?.name }}</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact person’s name ៖...................................................................................................................................................................</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email ៖ {{ data?.school_company?.companies[0]?.company?.email }}</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mobile number ៖ {{ data?.school_company?.companies[0]?.company?.phone }}</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Business type ៖ ..................................................................................................................................................................................</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Established year in Cambodia ៖ {{ data?.school_company?.companies[0]?.company?.established }}</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Address ៖ {{ data?.school_company?.companies[0]?.company?.address }}</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Registration number ៖ {{ data?.school_company?.companies[0]?.company?.registration_number }}</p>
+        </div>
+        <h3> &nbsp;&nbsp;School / Organization / Training provider <span class="company-italics">(If there are more than one partnered institution, please use this format and attach it as appendix)</span></h3>
+        <div class="company-info">
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Institution ៖ {{ data?.school_company?.school?.en_name }}</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sector ៖ {{ data?.school_company?.school?.type?.name }}</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact person’s name ៖...................................................................................................................................................................</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email ៖ {{ data?.school_company?.school?.email }}</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mobile number ៖ {{ data?.school_company?.school?.phone }}</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Business type ៖ ..................................................................................................................................................................................</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Established year in Cambodia ៖ {{ data?.school_company?.school?.established }}</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Address ៖ {{ data?.school_company?.school?.address }}</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Registration number ៖ {{ data?.school_company?.school?.registration_number }}</p>
+        </div>
+    </div>
+</section>

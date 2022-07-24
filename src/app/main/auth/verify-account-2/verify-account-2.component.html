@@ -1,0 +1,65 @@
+<div id="login" class="inner-scroll" fxLayout="row" fxLayoutAlign="start">
+
+    
+
+    <div id="login-form-wrapper" fusePerfectScrollbar
+         [@animate]="{value:'*',params:{delay:'300ms',x:'100%'}}">
+
+        <div id="login-form">
+
+            <div class="logo" fxHide.gt-xs >
+                <img src="assets/mlm/KNK-LOGO.png">
+            </div>
+
+            <div class="title">Verify code</div>
+            
+
+            <form name="form" [formGroup]="form" (ngSubmit)="verifyAccount()" novalidate>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Code</mat-label>
+                    <input matInput formControlName="code" required>
+                    <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+                </mat-form-field>
+
+                <div class="text-center">
+                    <div>OTP Sent to <b>{{ username }}</b> &nbsp;
+                    <span id="timer">00:{{timer}}</span></div>
+                </div>
+
+                <div class="verify-code">
+                    <button mat-raised-button color="accent" class="submit-button text-center" aria-label="LOG IN" [disabled]="form.invalid || isLoading" ng-click="verifyCode()">
+                        <mat-spinner style="margin:0 auto; " [diameter] = 30  *ngIf = " isLoading "  ></mat-spinner> <span *ngIf = " !isLoading " >Verify</span>
+                    </button>
+                </div>
+                <div class="re-send">
+                    <button mat-raised-button color="accent" class="submit-button text-center" aria-label="LOG IN" [disabled]=" timer > 0 || isResendLoading" (click)="reSendCode()" >
+                        <mat-spinner style="margin:0 auto; " [diameter] = 30  *ngIf = " isResendLoading "  ></mat-spinner> <span *ngIf = " !isResendLoading " >Re-Send</span>
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="additional-info">
+                <a [routerLink]="['/auth/login']">Back To Login</a>
+              </div>
+        </div>
+    </div>
+
+    <div id="login-intro" fxFlex fxHide fxShow.gt-xs>
+
+        <div class="logo" [@animate]="{value:'*',params:{scale:'0.2'}}">
+            <img src="assets/mlm/KNK-LOGO.png">
+        </div>
+
+        <div class="title" [@animate]="{value:'*',params:{delay:'50ms',y:'25px'}}">
+            <b style="color:white" >Welcome To Skills Development Fund - SDF</b>
+        </div>
+
+        <div class="description" [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}">
+           <span style="color:white" >To be the most trusted financing platform for sustainable and demand-driven skill development</span> 
+        </div>
+
+    </div>
+    
+</div>
