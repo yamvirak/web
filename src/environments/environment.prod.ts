@@ -3,9 +3,9 @@ export const environment = {
   hmr: false, 
   token: 'cp-token', 
 
-  apiUrl      : 'http://127.0.0.1:8080/api',
-  fileUrl     : 'http://127.0.0.1:7000/',
-  url         : 'http://127.0.0.1',
+  apiUrl      : 'http://157.245.193.126:1026/api',
+  fileUrl     : 'http://157.245.193.126:1026/',
+  url         : 'http://157.245.193.126:1025',
 
   user:       '',
   password:   ''
