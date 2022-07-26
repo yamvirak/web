@@ -1,0 +1,56 @@
+<div class="content" >
+    <div>
+        <h1 style="text-align: center;">របាយការណ៍ចំណូល</h1>
+        <section class="listing" >
+            <div *ngIf = " isSearching " >
+                <mat-spinner style="margin:auto" diameter = " 70 " ></mat-spinner>
+            </div>
+            <ng-container *ngIf=" data?.length > 0 && !isSearching ">
+                <table class="custom-table" >
+                    <thead>
+                        <tr>
+                            <th > លរ.</th>
+                            <th > លេខវិកយបត្រ </th>
+                            <th > លេខសម្គាល់បង្អែក </th>
+                            <th > ប្រភេទ </th>
+                            <th > ចំនួនទឹកប្រាក់</th>
+                            <th > ថ្ងៃបង្កើត </th>
+                        </tr>
+                    </thead>
+
+                    <tbody *ngFor="let row of data; let i = index; " [attr.data-index]="i">
+                        <tr >
+                            <td > {{ i+1 }} </td>
+                            <td> <b style="color: blue;">INC-{{ row?.id}}</b></td>
+                            <td > <b style="color: orange;">{{row?.referal_id}}</b> </td>
+                            <td > {{row?.type?.name}}  </td>
+                            <td class="text-center"> {{row?.usd_amount  | number }} $ <br>{{row?.riel_amount | number }} ៛</td>
+                            <td > {{ row?.created_at| date:'dd/MM/yyyy'}} </td>
+                        </tr>
+
+                    </tbody>
+                    <tbody>
+                        <tr style="text-align: center;">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-center"><b>សរុប</b></td>
+                            <td > <b style="color: blue;">{{totalRowUsd(data)}} $ <br> {{totalRowKh(data)}} ៛</b> </td>
+                            <td></td>
+                            
+                        </tr>
+
+                    </tbody>
+        
+                </table>
+            </ng-container>
+            <ng-container *ngIf=" data?.length == 0 && !isSearching ">
+                <div fxLayout="column" fxLayoutAlign="center center" fxflex style=" text-align: center;">
+                    <mat-icon role="img" class="mat-icon notranslate s-100 mb-16 select-message-icon hint-text material-icons mat-icon-no-color" aria-hidden="true"> toc </mat-icon>
+                    <span class="select-message-text hint-text"><span>No Data</span></span>
+                </div>
+            </ng-container>
+        </section>
+        
+    </div>
+</div>

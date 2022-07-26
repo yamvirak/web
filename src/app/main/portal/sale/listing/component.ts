@@ -11,9 +11,13 @@ import { Service } from '../service';
 
 import { ConfirmDialogComponent } from '../../../../shared/confirm-dialog/confirm.component';
 import { FunctionService } from '../../../../helper/function.service';
-
+import { environment as env} from 'environments/environment';
+import { DatePipe } from '@angular/common';
+import * as _moment from 'moment';
 import { ViewReceiptDialogComponent } from './view/component'; 
-
+import { PrintInvoiceComponent } from './print-invoice/component';
+const moment = _moment;
+const datepipe: DatePipe = new DatePipe('en-US')
 @Component({
     templateUrl  : './template.html',
     styleUrls: ['../../../../../assets/custom.scss', './style.scss'],
@@ -22,7 +26,8 @@ import { ViewReceiptDialogComponent } from './view/component';
 })
 export class ListingComponent implements OnInit
 {
-    
+    public from:any;
+    public to:any;
     public name:string          = '';
     public status:number        = 0; 
     public data:any[]           = [];
@@ -107,6 +112,12 @@ export class ListingComponent implements OnInit
         if(this.name != ""){
             params.name = this.name; 
         }
+        if(this.from){
+          params.from = datepipe.transform(this.from, 'yyyy-MM-dd') ;
+        }
+        if(this.to){
+          params.to = datepipe.transform(this.to, 'yyy-MM-dd') ;
+        }
 
         this._service.listing(params).subscribe(res => {
             
@@ -130,7 +141,16 @@ export class ListingComponent implements OnInit
       }
 
     }
+    //=========================================================================================>> Function printing report
+    printForm():void {
+      const dialogRef = this._dialog.open(PrintInvoiceComponent);
+      dialogRef.afterClosed().subscribe((result) => {
+        if(result){
+          this.listing(); 
+        }
+      });
 
+    }
    
 
   

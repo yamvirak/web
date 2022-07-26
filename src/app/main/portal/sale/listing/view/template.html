@@ -4,6 +4,14 @@
 <mat-dialog-content class="mat-typography" style="width: 700px;">
     <div fxLayout="row" class="pt-16 pb-16">
         <div fxFlex="50" >
+            Customer Name : {{ data?.customer?.name }} <br />
+        </div>
+        <div fxFlex="50" >
+            Customer Phone : {{ data?.customer?.phone }}
+        </div>
+    </div>
+    <div fxLayout="row" class="pt-16 pb-16">
+        <div fxFlex="50" >
             Created : {{ data?.created_at }} <br />
         </div>
         <div fxFlex="50" >

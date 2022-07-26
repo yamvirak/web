@@ -26,13 +26,13 @@
                     <div fxFlex="20" class="mr-8" >
                         <mat-form-field style="width:100%" >
                             <mat-label > Receipt Number </mat-label>
-                            <input matInput [(ngModel)]=" name " maxlength="100">
+                            <input matInput [(ngModel)]=" key " maxlength="100">
                         </mat-form-field>
 
                     </div>
                     <div fxFlex="20" class="mr-8" >
                         <mat-form-field style="width:100%" >
-                            <mat-label>Name</mat-label>
+                            <mat-label>Type</mat-label>
                             <mat-select [(ngModel)] = " type "  >
                                 <mat-option [value] = " 0 " > All</mat-option>
                                 <mat-option *ngFor = " let row of types " [value] = " row.id " > {{ row?.name }}</mat-option>

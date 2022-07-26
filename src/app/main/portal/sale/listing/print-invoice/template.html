@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>របាយការណ៍ការប្រាក់ចំណូល</h2>
+<mat-divider></mat-divider>
+
+<mat-dialog-content class="mat-typography" style="width: 500px;">
+    <mat-form-field class="mr-8">
+        <mat-label> ចាប់ពីថ្ងៃ </mat-label>
+        <input (click)="from_picker.open()" matInput [(ngModel)]="from" [matDatepicker]="from_picker" style = " cursor:pointer " [readonly] = " true ">
+        <mat-datepicker-toggle matSuffix [for]="from_picker"></mat-datepicker-toggle>
+        <mat-datepicker #from_picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field >
+        <mat-label> ដល់ </mat-label>
+        <input (click)="to_picker.open()" [(ngModel)]="to" matInput [matDatepicker]="to_picker" style = " cursor:pointer " [readonly] = " true " [min]="from">
+        <mat-datepicker-toggle matSuffix [for]="to_picker"></mat-datepicker-toggle>
+        <mat-datepicker #to_picker></mat-datepicker>
+    </mat-form-field> 
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button [disabled] = " isSearching " mat-icon-button (click)=" printInvoice()" > <mat-icon  class="mat-icon  s-40 btn-icon-searching-search" >print</mat-icon></button> &nbsp; 
+    <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

@@ -23,7 +23,7 @@ import { ChangePasswordDialogComponent } from './change-password/component';
 export class ListingComponent implements OnInit
 {
     
-    public name:string          = '';
+    public key:string          = '';
     public type:number          = 0; 
     public data:any[]           = [];
     public total:number         = 10;
@@ -93,8 +93,8 @@ export class ListingComponent implements OnInit
         this.isSearching = true; 
         let params:any = { }
         
-        if(this.name != ""){
-            params.name = this.name; 
+        if(this.key != ""){
+            params.key = this.key; 
         }
 
         this._service.listing(params).subscribe(res => {

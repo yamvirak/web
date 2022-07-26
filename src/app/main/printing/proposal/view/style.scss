@@ -1,0 +1,74 @@
+.inv-cnt{
+    color:black;
+    width:148mm;
+    height:210mm;
+   // background-image:url(assets/images/invoice.png) ;
+    background-repeat:no-repeat;
+}
+.invoice{
+    // padding: 30px;
+    padding-top: 100px;
+    padding-right: 80px;
+}
+table{
+    font-size:14px;
+}
+.logo{
+    /*background: blue;*/
+    width: 100%;
+    height: 142px;
+    /*background:#ff00007a;*/
+}
+.renter-and-date{
+    height: 125px;
+    /*background:#0012ff7a;*/
+}
+.renter-and-date .haft{
+    padding-top: 15px;
+    height: 100%;
+    width:50%;
+}
+.renter-and-date #renter{
+    /*background:#ff000087;*/
+    float: left;
+
+        
+}
+.renter-and-date #renter ul{
+    margin-top: 37px;
+    margin-left: 0px;
+    padding: 0px 0px 0px 20px;
+    list-style: none;
+}
+.renter-and-date #date{
+    /*background:#00ffc69e;*/
+    float: left;
+    text-align: right;
+}
+.unity {
+    width:100%;
+    height:111px;
+    /*background:#bed4167a;*/
+}
+.unity table{
+    padding-top:60px;
+}
+.detail{
+    // padding-top: 30px;
+    width:100%;
+    height:200px;
+    /*background:#00ff8b80;*/
+}
+.detail table{
+    padding-top:35px;
+}
+.total{
+    width:100%;
+    height:60px;
+    /*background:#ff00003b;*/
+}
+.final{
+    height: 77px;
+    margin-top: 20px;
+    /*background: #ffff007a;*/
+}

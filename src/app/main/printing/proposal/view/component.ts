@@ -7,7 +7,7 @@ import { FuseConfigService } from '@fuse/services/config.service';
 @Component({
     templateUrl  : './template.html',
     encapsulation: ViewEncapsulation.None,
-    styleUrls: ['../../printing.style.scss']
+    styleUrls: ['./style.scss']
 })
 export class ViewComponent implements OnInit
 {
@@ -50,7 +50,7 @@ export class ViewComponent implements OnInit
         // this.router.queryParams.subscribe(q=>{
             let code = this.router.snapshot.paramMap.get('code');
                 this.isLoading = true;
-                this._service.getProposal(code).subscribe( 
+                this._service.view(code).subscribe( 
                     // =============================>> Response Success 200
                     res =>{
                       

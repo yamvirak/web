@@ -41,7 +41,7 @@ export class Service {
     listing(params): Observable<any> {
 
         const httpOptions = {};
-        //httpOptions['params'] = params;
+        httpOptions['params'] = params;
 
         
         

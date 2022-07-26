@@ -148,7 +148,26 @@ export const portalNavigation: FuseNavigation[] = [
                 ],
             },
 
-
+            //===================================>> Supplier
+            {
+                id       : 'Supplier',
+                title    : 'Supplier',
+                translate: 'Supplier',
+                type     : 'item',
+                icon     : 'group',
+                url      : '/supplier',
+                hidden   : !isAdmin
+            },
+             //===================================>> Customer
+             {
+                id       : 'Customer',
+                title    : 'Customer',
+                translate: 'Customer',
+                type     : 'item',
+                icon     : 'group',
+                url      : '/customer',
+                hidden   : !isAdmin
+            },
             //===================================>> User
             {
                 id       : 'user',

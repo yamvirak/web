@@ -32,18 +32,6 @@
 
                     <div fxFlex="20" class="mr-8" >
                         <mat-form-field style="width:100%" >
-                            <mat-label>Status</mat-label>
-                            <mat-select [(ngModel)] = " status "  >
-                                <mat-option [value] = " 0 " > All</mat-option>
-                                <mat-option [value] = " 1 " > Paid</mat-option>
-                                <mat-option [value] = " 2 " > Unpaid</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                           
-                    </div>
-
-                    <div fxFlex="20" class="mr-8" >
-                        <mat-form-field style="width:100%" >
                             <mat-label>Branch</mat-label>
                             <mat-select [(ngModel)] = " status "  >
                                 <mat-option [value] = " 0 " > All</mat-option>
@@ -53,9 +41,29 @@
                         </mat-form-field>
                            
                     </div>
+                    <div fxLayout="row"  >
+
+                        <mat-form-field class="mr-8">
+                            <mat-label> ចាប់ពីថ្ងៃ </mat-label>
+                            <input (click)="from_picker.open()" matInput [(ngModel)]="from" [matDatepicker]="from_picker" style = " cursor:pointer " [readonly] = " true ">
+                            <mat-datepicker-toggle matSuffix [for]="from_picker"></mat-datepicker-toggle>
+                            <mat-datepicker #from_picker></mat-datepicker>
+                        </mat-form-field>
+                
+                        <mat-form-field >
+                            <mat-label> ដល់ </mat-label>
+                            <input (click)="to_picker.open()" [(ngModel)]="to" matInput [matDatepicker]="to_picker" style = " cursor:pointer " [readonly] = " true " [min]="from">
+                            <mat-datepicker-toggle matSuffix [for]="to_picker"></mat-datepicker-toggle>
+                            <mat-datepicker #to_picker></mat-datepicker>
+                        </mat-form-field>
+                      
+                    </div>
                    
                     <div fxFlex  >
-                        <button [disabled] = " isSearching " mat-icon-button (click)=" listing()" > <mat-icon  class="mat-icon  s-40 btn-icon-searching-search" >search</mat-icon></button> &nbsp;             
+                        <button [disabled] = " isSearching " mat-icon-button (click)=" listing()" > <mat-icon  class="mat-icon  s-40 btn-icon-searching-search" >search</mat-icon></button> &nbsp;      
+                        <button  mat-stroked-button color="accent" (click) = " printForm() " style="margin: 10px;">
+                            <mat-icon class="material-icons">print</mat-icon><span>របាយការណ៍</span> 
+                        </button>       
                     </div>                    
                 </div>
             </section>
@@ -72,6 +80,7 @@
                         <thead>
                             <tr>
                                 <th >Number.</th>
+                                <th class="text-center" >Customer</th>
                                 <th class="text-right">Total Price (KHR)</th>
                                 <th class="text-right">Discount (%)</th>
                                 <th class="">&nbsp; &nbsp; Date</th>
@@ -87,12 +96,13 @@
                             <tr *ngFor="let row of data; let i = index; " [attr.data-index]="i">
 
                                 <td ><b style="color:blue" >{{ row?.receipt_number }}</b></td>
+                                <td class="text-center" >{{ row?.customer?.name}} <br> {{ row?.customer?.phone}}</td>
                                 <td class="text-right" >{{ row?.total_price | number }} </td>
                                 <td class="text-right">{{ row?.discount | number }}</td>
                                 <td >
                                     <div class="pl-16" >
                                         <span>Created: {{ row?.updated_at }} </span><br />
-                                        <span *ngIf = " row?.paid_at " >Paid: {{ row?.paid_at }}</span>
+                                        
                                     </div>
                                 </td>
                                 <td >{{ row?.cashier?.name }} (SR)</td>

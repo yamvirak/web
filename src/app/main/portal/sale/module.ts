@@ -30,7 +30,7 @@ import { SharedModule } from 'app/shared/shared.module';
 
 import { ListingComponent } from './listing/component';
 import { ViewReceiptDialogComponent } from './listing/view/component'; 
-
+import { PrintInvoiceComponent } from './listing/print-invoice/component';
 
 const routes: Routes = [
     
@@ -46,7 +46,8 @@ const routes: Routes = [
 @NgModule({
     declarations: [
         ListingComponent, 
-        ViewReceiptDialogComponent
+        ViewReceiptDialogComponent,
+        PrintInvoiceComponent
        
     ],
     imports     : [
@@ -84,7 +85,8 @@ const routes: Routes = [
        
     ], 
     entryComponents: [
-        ViewReceiptDialogComponent
+        ViewReceiptDialogComponent,
+        PrintInvoiceComponent
     ]
 })
 export class SaleModule

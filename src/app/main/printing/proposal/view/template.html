@@ -1,14 +1,118 @@
-<div class="print-layout" fxLayout="row" >
-        <div class="card">
-            <summary-information-proposal [data]=" row "></summary-information-proposal>
 
-            <contact-detail [data]=" row "></contact-detail>
-       
-            <training-proposal [data]=" row "></training-proposal>
-       
-            <description-proposal [data]=" row "></description-proposal>
-  
-            <summary-budget [data]=" row "></summary-budget>
-        </div>
+		<div class="inv-cnt">
+			<div class="invoice" >
+				<div class="logo"></div>
+				<div class="renter-and-date">
+					<div id="renter" class="haft">
+						<ul>
+							<li>
+								អ្នកជួល : {{row[0]?.group?.renters[0]?.name}}
+								
+							</li>
+							<li>លេខទូរសព្ទ :{{row[0]?.group?.renters[0]?.phone}}
+							
+							</li>
+							<li>បន្ទប់ : {{row[0]?.group?.rooms[0]?.code}}
+							
+							</li>
+						</ul>
+					</div>
 
-</div>
+					<div id="date" class="haft">
+						<div style="margin-top: -4px;">
+							P-{{row[0]?.id}}
+						</div>
+						<div style="margin-top: -4px">
+							{{row[0]?.created_at | date:'mediumDate'}}
+						</div>
+						<div style="margin-top: 30px;margin-right: 30px;">
+							#{{row[0]?.group?.renters[0]?.id}}
+				
+						</div>
+					</div>
+				</div>
+				<div class="unity">
+					
+					<table style="text-align: center; width: 100%;">
+						<tbody  *ngFor="let data of row[0]?.details;">				
+							<tr *ngIf=" data?.type_id == 3">
+								<td style="width:20%" >{{data?.print_description}} </td>
+								<td style="width:15%">{{data?.created_at |date: 'mediumDate'}}</td>
+								<td style="width:15%">{{data?.new_number}}</td>
+								<td style="width:15%" *ngFor="let data of row;">{{data?.due_date |date: 'mediumDate'}}</td>
+								<td style="width:15%">{{data?.old_number}}</td>
+								<td style="width:20%">{{data?.qty}}</td>
+							</tr>
+							<tr *ngIf=" row?.type_id == 4">
+								<td style="width:20%" >{{row?.print_description}} </td>
+								<td style="width:15%">{{row?.created_at |date: 'mediumDate'}}</td>
+								<td style="width:15%">73</td>
+								<td style="width:15%" *ngFor="let data of row;">{{data?.due_date |date: 'mediumDate'}}</td>
+								<td style="width:15%">63</td>
+								<td style="width:20%">{{data?.qty}}</td>
+							</tr>
+							 
+						</tbody>
+					</table>
+				</div>
+				<div class="detail">
+					<table style="text-align: center; width: 100%;">
+						<tbody>
+							
+								<tr *ngFor="let row of row[0]?.details;">
+									<td style="width:35%">{{row?.print_description}}</td>
+									<td style="width:15%">{{row?.qty}} </td>
+									<td style="width:15%">{{row?.usd_amount}} </td>
+									<td style="width:15%">{{row?.usd_amount}}</td>
+									<td style="width:15%">{{row?.riel_amount}}</td>
+								</tr>
+						
+						</tbody>
+					</table>
+				</div>
+				<div class="total" style="">
+					<div style="height:100%;width:35%;float:right">
+						<table  style="width:100%;text-align: center;margin-top: 30px;">
+							<tbody>
+								<td style="width:50%">{{row[0]?.total_in_usd}}$</td>
+								<td style="width:50%">{{row[0]?.total_in_riel}}៛</td>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div >
+					<div style="width:34%;height: 100%; float:left;text-align: right;padding-top: 5px;">
+						<div style="margin-top:5px;">
+							{{row[0]?.group?.rooms[0]?.s1}}	 m<sup>2</sup>
+						</div>
+						<div style="margin-top: -6px;">
+							{{row[0]?.group?.rooms[0]?.s2}} m<sup>2</sup>
+						</div>
+						<div style="margin-top: -6px;">
+							{{row[0]?.group?.rooms[0]?.s}} m<sup>2</sup>
+						</div>
+					</div>
+					<div style="width:66%;height: 100%; float:right;">
+						<table style="text-align: center; width: 100%;padding-top:35px">
+							<tbody>
+								<tr>
+									<td style="width:33%" >{{row[0]?.user?.name}}</td>
+									<td style="width:33%">
+										{{row[0]?.group?.renters[0]?.name}}
+									</td>
+									<td style="width:33%">
+										<div *ngIf=" row[0]?.is_paid == 0">
+											N/A
+										</div>
+										<div *ngIf=" row[0]?.is_paid == 1">
+											{{row[0]?.receive?.name}}
+										</div>
+									</td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>

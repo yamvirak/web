@@ -3,12 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
     {
-        path: 'proposal',
+        path: 'invoice',
         loadChildren: () => import('./proposal/module').then(m => m.Module),
     },
 
    
-
 ];
 
 @NgModule({

@@ -76,15 +76,22 @@ export class Service implements Resolve<any>
         };
     }
 
-    getProposal(propsoalCode:string = ''): Observable<any> {
+    view(id:string = ''): Observable<any> {
         return this.http
-            .get<any>('/portal/proposal/'+propsoalCode)
+            .get<any>('/cp/invoice/'+id)
             .pipe(
                 tap(_ => { }),
-                catchError(this.handleError<any>('getProposal', []))
+                catchError(this.handleError<any>('getUser', []))
             );
     }
- 
+    
+    incomeRecord(startDate:string = '', endDate:string=''): Observable<any> {
+
+        const httpOptions = {};
+        // httpOptions['params'] = params;
+
+        return this.http.get<any>('/cp/income/record?from='+startDate+'&to='+endDate, httpOptions);
+    }
     
     
 }
