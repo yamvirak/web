@@ -53,6 +53,45 @@
                 <div>
                     Cashier: <b>{{ cashier }}</b>
                 </div>
+                <div>
+                   <span *ngIf=" cart?.length > 0"> 
+                    
+                    <div class="qty-cnt" >
+                        Customer Name:
+                        <input 
+                            type="text" 
+                            [(ngModel)]=" name " 
+                            (blur)="blur($event, i)" 
+                            class="qty-input"
+                            (keyup)="getTotalPrice()" 
+                            style="background-color: #00010226;height: 23px;margin-left: 14px;">
+
+                    </div>
+                    <div class="qty-cnt" >
+                        Customer Phone:
+                        <input 
+                            type="text" 
+                            [(ngModel)]=" phone " 
+                            (blur)="blur($event, i)" 
+                            class="qty-input"
+                            (keyup)="getTotalPrice()" 
+                            style="background-color: #00010226;height: 23px;margin-left: 12px;">
+
+                    </div>
+                    <div class="qty-cnt">
+                        Customer Address:
+                        <input 
+                            type="text" 
+                            [(ngModel)]=" address " 
+                            (blur)="blur($event, i)" 
+                            class="qty-input"
+                            (keyup)="getTotalPrice()" 
+                            style="background-color: #00010226;height: 23px;">
+
+                    </div>
+                   </span>
+                </div>
+               
 
                 <div>
                     <table *ngIf=" cart?.length > 0"  class="proposal-value-table">
@@ -60,6 +99,7 @@
                         <tr>
         
                             <th class="title">ផលិតផល</th>
+                            <th class="title">តម្លៃរាយ</th>
                             <th class="title">ចំនួន(QTY)</th>
                             <th class="text-right">តម្លៃ (KHR) </th>
                             <th></th>
@@ -73,6 +113,22 @@
                                     {{ item?.name }} <br> 
                                     <span style="font-style: italic; font-size: 12px;">{{ item?.unit_price | number }}</span>
                                 </td>
+                                <td>
+            
+                                    <div class="qty-cnt">
+                                        <input 
+
+                                            type="number" 
+                                            [(ngModel)]=" item.unit_price " 
+                                            (blur)="blur($event, i)" 
+                                            min="1" 
+                                            max="1000000000" 
+                                            class="qty-input"
+                                            (keyup)="getTotalPrice()" >
+
+                                    </div>
+            
+                                </td>
             
                                 <td>
             
@@ -83,7 +139,7 @@
                                             [(ngModel)]=" item.temp_qty  " 
                                             (blur)="blur($event, i)" 
                                             min="1" 
-                                            max="1000" 
+                                            max="10000000" 
                                             class="qty-input" >
 
                                     </div>

@@ -78,7 +78,7 @@
                                     <mat-icon>edit</mat-icon>
                                 </button>
 
-                                <button  mat-icon-button color="warn" (click)="onDelete(row)"   matTooltip="delete">
+                                <button [disabled]="row?.staffs?.length != 0" mat-icon-button color="warn" (click)="onDelete(row)"   matTooltip="delete">
                                     <mat-icon>delete</mat-icon>
                                 </button>
                             </td>

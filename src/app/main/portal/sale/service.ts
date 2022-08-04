@@ -32,7 +32,18 @@ export class Service {
         return this.http.delete('/cp/sales/'+id, this.httpOptions);
     }
 
-   
+    //==================================================================================>> Listing
+    printingSale(params): Observable<any> {
+
+        const httpOptions = {};
+        httpOptions['params'] = params;
+
+        return this.http.get<any>('/cp/sales/record', httpOptions);
+    }
+
+    printingInvoice(id:number = 0): Observable<any> {
+        return this.http.get('/cp/sales/invoice/'+id, this.httpOptions);
+    }
 
    
 }

@@ -14,6 +14,7 @@ export class StaffDialogComponent implements OnInit{
 
 
   public isSaving:boolean = false;
+  public dataHasChanged:boolean = false; 
 
   constructor(
     private _service: Service,

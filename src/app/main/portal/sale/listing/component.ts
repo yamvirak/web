@@ -8,7 +8,7 @@ import { MatSort, MatDialog, MatSnackBar } from '@angular/material';
 // ===================================================================>> Custom Library
 import { fuseAnimations } from '@fuse/animations';
 import { Service } from '../service';
-
+import jsreport from '@jsreport/browser-client';
 import { ConfirmDialogComponent } from '../../../../shared/confirm-dialog/confirm.component';
 import { FunctionService } from '../../../../helper/function.service';
 import { environment as env} from 'environments/environment';
@@ -34,6 +34,7 @@ export class ListingComponent implements OnInit
     public total:number         = 10;
     public limit:number         = 10;
     public page:number          = 1;
+    public dataPrint:any;
     public isSearching:boolean  = false; 
 
     constructor(
@@ -150,6 +151,37 @@ export class ListingComponent implements OnInit
         }
       });
 
+    }
+    printingInvoice(){
+
+      let params:any={}      
+      if (this.from && this.to) {
+        params.from = datepipe.transform(this.from, 'yyyy-MM-dd'),
+        params.to = datepipe.transform(this.to, 'yyyy-MM-dd')
+      }
+      else {
+        params.from = '',
+        params.to = ''
+      };
+  
+      this._service.printingInvoice(params).subscribe(res => {
+        this.dataPrint = res;   
+        jsreport["serverUrl"] = 'http://127.0.0.1:5488';
+        jsreport.headers['Authorization'] = "Basic " + btoa('admin:123456');
+        let request:any = {
+  
+          "data":JSON.stringify(this.dataPrint),
+          "template": { "name":"invoice-main" }
+        }
+        
+        jsreport.render(request).then(function(res) {
+  
+        // open output in the new window
+          res.openInWindow();
+          //res.download('myreport.pdf');
+        }).catch(error => console.log(error));  
+      
+      })
     }
    
 

@@ -72,8 +72,9 @@
 
 <mat-dialog-actions align="end">
     
-    <button mat-button   cdkFocusInitial>
-        <span  >Print</span>
+    <button mat-button [disabled] = " isSaving " (click)= " printingInvoice() " cdkFocusInitial>
+        <mat-spinner *ngIf = " isSaving " style="margin:auto" diameter = " 30 " ></mat-spinner>
+        <span  *ngIf = " !isSaving ">Print</span>
     </button>
     
     <button mat-button  [mat-dialog-close]=" true "  cdkFocusInitial>Close</button>

@@ -50,7 +50,9 @@ export class Service {
         return this.http.post('/cp/pos/order', data);
     }
 
-   
+    printingInvoice(id:number = 0): Observable<any> {
+        return this.http.get('/cp/sales/invoice/'+id, this.httpOptions);
+    }
 
    
 }

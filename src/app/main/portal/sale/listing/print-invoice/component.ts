@@ -4,10 +4,11 @@ import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-mo
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
 import { MatDialogRef } from '@angular/material';
-
+import jsreport from '@jsreport/browser-client'
 import { environment as env} from 'environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Service } from '../../service';
+
 const datepipe: DatePipe = new DatePipe('en-US')
 export const MY_FORMATS = {
   parse: {
@@ -36,6 +37,7 @@ export class PrintInvoiceComponent implements OnInit{
   public isSaving:boolean = false;
   public dataHasChanged:boolean = false; 
   public isSearching:boolean  = false; 
+  public dataPrint:any;
 
   constructor(
     private _service: Service,
@@ -50,17 +52,36 @@ export class PrintInvoiceComponent implements OnInit{
   // console.log(this.data)
   }
 
-  printInvoice(id:string = ''){
-    let token = localStorage.getItem("temp-token");
-    let w = window.open("about:blank");
-    let startDate = datepipe.transform(this.from, 'yyyy-MM-dd') ;
-    let endDate =datepipe.transform(this.to, 'yyy-MM-dd');
-    //window.open(env.apiUrl+"/cp/sales/report/?from="+startDate+'&to='+endDate+ token);
-    w.document.body.appendChild(w.document.createElement("iframe")).src =
-    env.apiUrl + "/cp/sales/report/?from="+startDate+'&to='+endDate + "&token=" + token;
-    w.document.getElementsByTagName("iframe")[0].style.width = "100%";
-    w.document.getElementsByTagName("iframe")[0].style.height = "100%";
-     w.focus();
+  printingSale(){
+
+    let params:any={}      
+    if (this.from && this.to) {
+      params.from = datepipe.transform(this.from, 'yyyy-MM-dd'),
+      params.to = datepipe.transform(this.to, 'yyyy-MM-dd')
+    }
+    else {
+      params.from = '',
+      params.to = ''
+    };
+
+    this._service.printingSale(params).subscribe(res => {
+      this.dataPrint = res;   
+      jsreport["serverUrl"] = 'http://127.0.0.1:5488';
+      jsreport.headers['Authorization'] = "Basic " + btoa('admin:123456');
+      let request:any = {
+
+        "data":JSON.stringify(this.dataPrint),
+        "template": { "name":"sale-main" }
+      }
+      
+      jsreport.render(request).then(function(res) {
+
+      // open output in the new window
+        res.openInWindow();
+        res.download('myreport.pdf');
+      }).catch(error => console.log(error));  
+    
+    })
   }
  
 }

@@ -27,6 +27,9 @@ export class ListingComponent implements OnInit
     public discount:number = 0;
     public time:string = ''; 
     public cashier:string = ''; 
+    public name:string = '';
+    public phone:number;
+    public address:string;
 
 
     constructor(
@@ -130,25 +133,25 @@ export class ListingComponent implements OnInit
     }
 
     // ================================>> Sub value 
-    blur(event: any, index:number = -1){
+    // blur(event: any, index:number = -1){
 
-      const tempQty = this.cart[index]['qty']; 
-      if(event.target.value > 1000){
-        event.target.value = 1000; 
-      }
+    //   const tempQty = this.cart[index]['qty']; 
+    //   if(event.target.value > 1000000){
+    //     event.target.value = 1000000; 
+    //   }
 
-      if(!event.target.value){
-        this.cart[index]['qty'] = tempQty; 
-        this.cart[index]['temp_qty'] = tempQty; 
-      }else{
-        this.cart[index]['qty'] = parseInt(event.target.value);
-        this.cart[index]['temp_qty'] = parseInt(event.target.value);
-      }
+    //   if(!event.target.value){
+    //     this.cart[index]['qty'] = tempQty; 
+    //     this.cart[index]['temp_qty'] = tempQty; 
+    //   }else{
+    //     this.cart[index]['qty'] = parseInt(event.target.value);
+    //     this.cart[index]['temp_qty'] = parseInt(event.target.value);
+    //   }
   
-      this.getTotalPrice();
+    //   this.getTotalPrice();
 
 
-    }
+    // }
 
     // =================================>> Remove
     remove(index:number = -1){
@@ -159,18 +162,30 @@ export class ListingComponent implements OnInit
     // ================================>> CheckOut
     public isOrderBeingMade:boolean =  false; 
     checkOut(){
-
-       
+        
+        console.log(this.totalPrice);
+        
         let cart:any = {}; 
         for(let i = 0; i < this.cart.length; i++){
-          cart[this.cart[i].id] = this.cart[i].qty;  
+          cart[this.cart[i].id] = this.cart[i].qty; 
+          cart[this.cart[i].unit_price] = this.cart[i].unit_price; 
+        console.log(this.cart[i].unit_price);
+
         }
+        
 
       
         let data = {
             cart: JSON.stringify(cart), 
-            discount: this.discount
+            discount: this.discount,
+            name: this.name,
+            phone: this.phone,
+            address: this.address,
         }
+
+        console.log(data);
+        
+
 
         this.isOrderBeingMade = true; 
         this.time = moment().format("dddd, MMMM Do YYYY, h:mm:ss a"); 

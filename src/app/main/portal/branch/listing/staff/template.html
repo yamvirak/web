@@ -70,6 +70,6 @@
 
 <mat-dialog-actions align="end">
  
-    <button mat-button [disabled] = " isSaving "   cdkFocusInitial>Close</button>
+    <button mat-button [disabled] = " isSaving " [mat-dialog-close]=" dataHasChanged "  cdkFocusInitial>Close</button>
 
 </mat-dialog-actions>
