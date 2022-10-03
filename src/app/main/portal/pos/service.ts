@@ -41,9 +41,16 @@ export class Service {
     listing(params): Observable<any> {
 
         const httpOptions = {};
-        //httpOptions['params'] = params;
+        httpOptions['params'] = params;
 
         return this.http.get<any>('/cp/pos/products', httpOptions);
+    }
+    list(params): Observable<any> {
+
+        const httpOptions = {};
+        httpOptions['params'] = params;
+
+        return this.http.get<any>('/cp/pos/products-tpye', httpOptions);
     }
 
     checkOut(data:any): Observable<any> {

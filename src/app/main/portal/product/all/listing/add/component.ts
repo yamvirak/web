@@ -68,7 +68,7 @@ export class AddDialogComponent implements OnInit{
 
     this.form = new FormGroup({
       
-      available_stock: new FormControl(this.data.row.stock[0].available_stock, [ Validators.required]),
+      available_stock: new FormControl('', [ Validators.required]),
       
     });
 

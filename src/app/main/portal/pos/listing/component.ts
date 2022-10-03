@@ -21,8 +21,8 @@ import { ViewDialogComponent } from './view/view.dialog.component';
 export class ListingComponent implements OnInit
 {
     
-    
     public data:any[] = []; 
+    public item:any[] = []; 
     public fileUrl = env.fileUrl; 
     public discount:number = 0;
     public time:string = ''; 
@@ -30,7 +30,8 @@ export class ListingComponent implements OnInit
     public name:string = '';
     public phone:number;
     public address:string;
-
+    public key:string= '';
+    public isSearching:boolean  = false;
 
     constructor(
 
@@ -50,9 +51,10 @@ export class ListingComponent implements OnInit
     ngOnInit(): void
     {
        this.cashier = localStorage.getItem('name'); 
-       this._service.listing({}).subscribe(res => {
-           this.data = res; 
-       })
+       this.listing(); 
+       this._service.list({}).subscribe(res => {
+        this.item = res;
+    })
     }
 
 
@@ -92,7 +94,7 @@ export class ListingComponent implements OnInit
             // console.log('Current qty:'+parseInt(cartItem['qty'])); 
             isExisting = true;
             this.cart[j]['qty'] = parseInt(cartItem['qty']) + qty; 
-            this.cart[j]['temp_qty'] = parseInt(cartItem['qty']); 
+            this.cart[j]['temp_qty'] = parseInt(cartItem['qty']);  
             
             //console.log('After qty:'+this.cart[j]['qty']); 
           }
@@ -183,7 +185,7 @@ export class ListingComponent implements OnInit
             address: this.address,
         }
 
-        console.log(data);
+        // console.log(data);
         
 
 
@@ -215,6 +217,21 @@ export class ListingComponent implements OnInit
        
      
     }
+    listing() {
+        
+      this.isSearching = true; 
+      let params:any = { }
+      
+      if(this.key != ''){
+          params.key = this.key; 
+      }
+      this._service.listing(params).subscribe(res => {
+          
+          this.isSearching = false; 
+          this.data = res;
+      })
+     
+  }
  
 
   

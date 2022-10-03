@@ -120,33 +120,33 @@ export const portalNavigation: FuseNavigation[] = [
                 ],
             },
 
-            //===================================>> Expense
-            {
-                id       : 'income',
-                title    : 'Income',
-                translate: 'Income',
-                type     : 'collapsable',
-                icon     : 'monetization_on',
-                hidden   : !isAdmin,
-                children : [
-                    {
-                        id       : 'all_income',
-                        title    : 'All Income',
-                        translate: 'All Income',
-                        type     : 'item',
-                        icon     : 'keyboard_arrow_right',
-                        url      : '/income'
-                    }, 
-                    {
-                        id      : 'income-type',
-                        title   : 'Type',
-                        translate: 'Type',
-                        type    : 'item',
-                        icon     : 'keyboard_arrow_right',
-                        url     : '/income-types'
-                    }
-                ],
-            },
+            // //===================================>> Expense
+            // {
+            //     id       : 'income',
+            //     title    : 'Income',
+            //     translate: 'Income',
+            //     type     : 'collapsable',
+            //     icon     : 'monetization_on',
+            //     hidden   : !isAdmin,
+            //     children : [
+            //         {
+            //             id       : 'all_income',
+            //             title    : 'All Income',
+            //             translate: 'All Income',
+            //             type     : 'item',
+            //             icon     : 'keyboard_arrow_right',
+            //             url      : '/income'
+            //         }, 
+            //         {
+            //             id      : 'income-type',
+            //             title   : 'Type',
+            //             translate: 'Type',
+            //             type    : 'item',
+            //             icon     : 'keyboard_arrow_right',
+            //             url     : '/income-types'
+            //         }
+            //     ],
+            // },
 
             //===================================>> Supplier
             {
@@ -158,7 +158,7 @@ export const portalNavigation: FuseNavigation[] = [
                 url      : '/supplier',
                 hidden   : !isAdmin
             },
-             //===================================>> Customer
+            //  //===================================>> Customer
              {
                 id       : 'Customer',
                 title    : 'Customer',
