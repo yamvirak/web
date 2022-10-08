@@ -13,6 +13,8 @@ import { ConfirmDialogComponent } from '../../../../shared/confirm-dialog/confir
 import { FunctionService } from '../../../../helper/function.service';
 
 import { ChangePasswordDialogComponent } from './change-password/component'; 
+import { CreateDialogComponent } from './create/component';
+import { EditDialogComponent } from './edit/component';
 
 @Component({
     templateUrl  : './template.html',
@@ -71,20 +73,20 @@ export class ListingComponent implements OnInit
     onDelete(row:any = null){
 
       //console.log(row);
-      // const dialogRef = this._dialog.open(ConfirmDialogComponent);
-      // dialogRef.afterClosed().subscribe((result) => {
-      //   //console.log(result); 
-      //   if(result){
+      const dialogRef = this._dialog.open(ConfirmDialogComponent);
+      dialogRef.afterClosed().subscribe((result) => {
+        //console.log(result); 
+        if(result){
           
-      //     this._service.delete(row.id).subscribe((res) => {
+          this._service.delete(row.id).subscribe((res) => {
 
-      //       if(res.status == 'success'){
-      //           this.listing();
-      //           this._snackBar.open(res.message, 'សារ',{verticalPosition:"bottom", horizontalPosition:"right", duration:5000, panelClass: ['green-snackbar']});
-      //       }
-      //     });
-      //   }
-      // });
+            if(res.status == 'success'){
+                this.listing();
+                this._snackBar.open(res.message, 'សារ',{verticalPosition:"bottom", horizontalPosition:"right", duration:5000, panelClass: ['green-snackbar']});
+            }
+          });
+        }
+      });
 
     }
 
@@ -104,6 +106,37 @@ export class ListingComponent implements OnInit
             //this.openChangePasswordForm(this.data[0]); 
         })
        
+    }
+    openCreateForm():void {
+
+      const dialogRef = this._dialog.open(CreateDialogComponent);
+      dialogRef.afterClosed().subscribe((result) => {
+        
+        //console.log(result); 
+
+        if(result){
+            
+          this.listing(); 
+        }
+          
+      });
+
+    }
+
+    openEditForm(row:any = null):void {
+
+      const dialogRef = this._dialog.open(EditDialogComponent, { data:row });
+      dialogRef.afterClosed().subscribe((result) => {
+        
+        //console.log(result); 
+
+        if(result){
+            
+          this.listing(); 
+        }
+          
+      });
+
     }
 
    

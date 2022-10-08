@@ -15,7 +15,7 @@ import { FunctionService } from '../../../../helper/function.service';
 import { CreateDialogComponent } from './create/component'; 
 import { EditDialogComponent } from './edit/component'; 
 import { StaffDialogComponent } from './staff/component'; 
-
+import { AddStaffDialogComponent } from './addNew/component';
 @Component({
     templateUrl  : './template.html',
     styleUrls: ['../../../../../assets/custom.scss', './style.scss'],
@@ -78,6 +78,21 @@ export class ListingComponent implements OnInit
     openEditForm(row:any = null):void {
 
       const dialogRef = this._dialog.open(EditDialogComponent, { data:row });
+      dialogRef.afterClosed().subscribe((result) => {
+        
+        //console.log(result); 
+
+        if(result){
+            
+          this.listing(); 
+        }
+          
+      });
+
+    }
+    openAddStaff(row:any = null):void {
+
+      const dialogRef = this._dialog.open(AddStaffDialogComponent, { data:row });
       dialogRef.afterClosed().subscribe((result) => {
         
         //console.log(result); 

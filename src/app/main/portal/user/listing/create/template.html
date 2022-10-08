@@ -1,0 +1,92 @@
+<h2 mat-dialog-title>Create New User</h2>
+<mat-divider></mat-divider>
+
+<mat-dialog-content class="mat-typography" style="width: 700px;">
+   
+    <form name="form" [formGroup]="form" (ngSubmit)="save()" fxLayout="row wrapper">
+
+        <!-- ===============================================================>> Name -->
+        <mat-form-field appearance="outline" fxFlex="100" >
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" required>
+            <mat-icon matSuffix class="secondary-text">store</mat-icon>
+
+            <mat-error *ngIf="form.get('name').hasError('required')">
+               Please enter product's name. 
+            </mat-error>
+           
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100" >
+            <mat-label>Phone</mat-label>
+            <input matInput formControlName="phone" required>
+            <mat-icon matSuffix class="secondary-text">store</mat-icon>
+
+            <mat-error *ngIf="form.get('phone').hasError('required')">
+               Please enter phone. 
+            </mat-error>
+           
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100" >
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required>
+            <mat-icon matSuffix class="secondary-text">store</mat-icon>
+
+            <mat-error *ngIf="form.get('email').hasError('required')">
+               Please enter email. 
+            </mat-error>
+           
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>Branch</mat-label>
+            <mat-select formControlName = "branch_id" required>
+                <mat-option *ngFor = " let row of branches " [value] = " row.id " > {{ row?.name }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('branch_id').hasError('required')">
+                Please enter branch. 
+             </mat-error>
+        </mat-form-field>
+
+        <!-- ===============================================================>> Type -->
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>Role</mat-label>
+            <mat-select formControlName = "role_id" required>
+                <mat-option [value] = 1 > Manager</mat-option>
+                <mat-option [value] = 2 > Staff</mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('role_id').hasError('required')">
+                Please enter role. 
+             </mat-error>
+        </mat-form-field>
+
+        <!-- ===============================================================>> Supplier -->
+        <mat-form-field appearance="outline" fxFlex="100"   >
+            <mat-label>Password</mat-label>
+             <input matInput type="password" formControlName="password"  required>
+            <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+            <mat-error>
+                <span *ngIf="form.get('password').hasError('required')">Please Input the Password</span>
+                <span *ngIf="form.get('password').hasError('minlength')">Your password must be at least 6 digits long.</span>
+                <span *ngIf="form.get('password').hasError('maxlength')">Passwords cannot enter more than 20 digits.</span>
+                <span *ngIf="form.get('password').hasError('servererror')">{{ form.get('password').errors.servererror }}</span>
+            </mat-error>
+        </mat-form-field>
+       
+
+    </form>
+
+    <mat-divider></mat-divider>
+    
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions align="end">
+    
+    <button mat-button [disabled] = " isSaving " (click)= " save() " cdkFocusInitial>
+        <mat-spinner *ngIf = " isSaving " style="margin:auto" diameter = " 30 " ></mat-spinner>
+        <span  *ngIf = " !isSaving ">Save</span>
+    </button>
+    
+    <button mat-button [disabled] = " isSaving " [mat-dialog-close]=" false "  cdkFocusInitial>Close</button>
+
+</mat-dialog-actions>

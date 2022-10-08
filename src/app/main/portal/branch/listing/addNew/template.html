@@ -2,7 +2,7 @@
 
 <div fxLayout="row wrapper" mat-dialog-title >
   <div fxFlex="50" >
-    <h2 >Staff: {{ data?.name }}</h2>
+    <h2 >Add Staff to branch {{ data?.name }}</h2>
   </div>
 </div>
 
@@ -18,7 +18,6 @@
                     <th >No.</th>
                     <th class="">Name</th>
                     <th class="">Phone</th>
-                    <th class="">Position</th>
                     <th class="">Date</th>
                     <th class=""></th>
                 </tr>
@@ -32,14 +31,10 @@
                     <td >{{ i +1 }}</td>
                     <td >{{ row?.admin?.user?.name }} </td>
                     <td >{{ row?.admin?.user?.phone }} </td>
-                    <td >
-                        <span *ngIf = " row?.role == 1 ">Branch Manager</span>
-                        <span  *ngIf = " row?.role != 1 " >Staff</span>
-                    </td>
                     <td >{{ row?.created_at }}</td>
                     <td class="text-right">
-                        <button  mat-icon-button color="warn" (click)="onDelete(row)"   matTooltip="delete">
-                            <mat-icon>delete</mat-icon>
+                        <button  mat-icon-button color="accent"    matTooltip="Add New">
+                            <mat-icon>add</mat-icon>
                         </button>
                     </td>
                 </tr>

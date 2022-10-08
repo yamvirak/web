@@ -30,7 +30,8 @@ import { SharedModule } from 'app/shared/shared.module';
 
 import { ListingComponent } from './listing/component';
 import { ChangePasswordDialogComponent } from './listing/change-password/component'; 
-
+import { EditDialogComponent } from './listing/edit/component';
+import { CreateDialogComponent } from './listing/create/component';
 const routes: Routes = [
     
 
@@ -47,7 +48,9 @@ const routes: Routes = [
 @NgModule({
     declarations: [
         ListingComponent, 
-        ChangePasswordDialogComponent
+        ChangePasswordDialogComponent,
+        EditDialogComponent,
+        CreateDialogComponent
        
     ],
     imports     : [
@@ -85,7 +88,9 @@ const routes: Routes = [
        
     ], 
     entryComponents: [
-        ChangePasswordDialogComponent
+        ChangePasswordDialogComponent,
+        EditDialogComponent,
+        CreateDialogComponent
     ]
 })
 export class Module

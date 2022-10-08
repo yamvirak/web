@@ -32,7 +32,7 @@ import { ListingComponent } from './listing/component';
 import { CreateDialogComponent } from './listing/create/component'; 
 import { EditDialogComponent } from './listing/edit/component'; 
 import { StaffDialogComponent } from './listing/staff/component'; 
-
+import { AddStaffDialogComponent } from './listing/addNew/component';
 
 const routes: Routes = [
     
@@ -52,7 +52,8 @@ const routes: Routes = [
         ListingComponent, 
         CreateDialogComponent, 
         EditDialogComponent, 
-        StaffDialogComponent
+        StaffDialogComponent,
+        AddStaffDialogComponent
        
     ],
     imports     : [
@@ -92,7 +93,8 @@ const routes: Routes = [
     entryComponents: [
         CreateDialogComponent, 
         EditDialogComponent, 
-        StaffDialogComponent
+        StaffDialogComponent,
+        AddStaffDialogComponent
     ]
 })
 export class Module

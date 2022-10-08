@@ -52,18 +52,22 @@ export class Service {
         return this.http.post('/cp/users/'+id+'/change-password', data);
     }
 
-    // create(data:any): Observable<any> {
-    //     return this.http.post('/cp/branches', data);
-    // }
+    create(data:any): Observable<any> {
+        return this.http.post('/cp/users', data);
+    }
 
-    // update(id:number = 0, data:any = {}): Observable<any> {
-    //     return this.http.post('/cp/branches/'+id+'?_method=PUT', data, this.httpOptions);
-    // }
+    update(id:number = 0, data:any = {}): Observable<any> {
+        return this.http.post('/cp/users/'+id+'?_method=PUT', data, this.httpOptions);
+    }
 
-    // delete(id:number = 0): Observable<any> {
-    //     return this.http.delete('/cp/branches/'+id, this.httpOptions);
-    // }
+    delete(id:number = 0): Observable<any> {
+        return this.http.delete('/cp/users/'+id, this.httpOptions);
+    }
+    getBranch(): Observable<any> {
 
+        const httpOptions = {};
+        return this.http.get<any>('/cp/branches', httpOptions);
+    }
    
 
    

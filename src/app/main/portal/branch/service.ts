@@ -57,6 +57,9 @@ export class Service {
     delete(id:number = 0): Observable<any> {
         return this.http.delete('/cp/branches/'+id, this.httpOptions);
     }
+    deleteStaff(id:number = 0): Observable<any> {
+        return this.http.delete('/cp/branches/staff/'+id, this.httpOptions);
+    }
 
    
 

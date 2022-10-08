@@ -111,7 +111,7 @@ export class ListingComponent implements OnInit
         }
         
         if(this.name != ""){
-            params.name = this.name; 
+            params.receipt_number = this.name; 
         }
         if(this.from){
           params.from = datepipe.transform(this.from, 'yyyy-MM-dd') ;

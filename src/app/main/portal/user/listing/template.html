@@ -11,7 +11,7 @@
         </div>
 
         <div fxFlex="50" class="text-right"  >
-            <button  mat-stroked-button color="accent" >
+            <button  mat-stroked-button color="accent" (click) = "openCreateForm()">
                 <mat-icon class="material-icons">add</mat-icon><span>Create User</span> 
             </button>
         </div>
@@ -67,7 +67,10 @@
                                 <td >{{ row?.phone }} </td>
                                 <td >{{ row?.email }}</td>
                                 <td >
-                                    Batambong (Manager)
+                                    <span *ngFor="let item of row?.admin?.branches">
+                                        {{ item?.branch?.name}}
+                                    </span>
+                                    
                                 </td>
                                 <td >{{ row?.created_at }}</td>
                                 <td class="text-right"  >
