@@ -23,7 +23,7 @@ export class MyProfileService {
 
     viewProfile(): Observable<any> {
         return this.http
-            .get<any>('/portal/profile')
+            .get<any>('/cp/myprofile')
             .pipe(
                 tap(_ => { }),
                 catchError(this.handleError<any>('', []))
@@ -32,7 +32,7 @@ export class MyProfileService {
 
     viewProfileUser(): Observable<any> {
         return this.http
-            .get<any>('/portal/profile')
+            .get<any>('/cp/myprofile')
             .pipe(
                 tap(_ => { }),
                 catchError(this.handleError<any>('', []))
@@ -42,7 +42,7 @@ export class MyProfileService {
     // ==================== Update Profile
     updateUserPortal(body: object): Observable<any> {
         return this.http
-            .put('/portal/profile', body, this.httpOptions)
+            .put('/cp/myprofile', body, this.httpOptions)
             .pipe(
                 tap(_ => console.log('updating data')),
                 catchError(this.handleError<any>('Cannot update profile', []))
@@ -52,7 +52,7 @@ export class MyProfileService {
     // ==================== Update Profile
     updateUser(body: object): Observable<any> {
         return this.http
-            .put('/cp/my-profiles', body, this.httpOptions)
+            .put('/cp/myprofile', body, this.httpOptions)
             .pipe(
                 tap(_ => console.log('updating data')),
                 catchError(this.handleError<any>('Cannot update profile', []))
@@ -62,7 +62,7 @@ export class MyProfileService {
     // =================== Update password
     updatePassword(body: object): Observable<any> {
         return this.http
-            .put('/portal/profile/change-password', body, this.httpOptions)
+            .put('/cp/myprofile/change-password', body, this.httpOptions)
             .pipe(
                 tap(_ => console.log('updating data')),
                 catchError(this.handleError<any>('Cannot update profile', []))

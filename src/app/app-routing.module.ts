@@ -25,11 +25,11 @@ const routes: Routes = [
     canLoad: [AuthGuard]
   },
   
-  // {
-  //   path: '**',
-  //   loadChildren: () => import('./main/my-profile/my-profile.module').then(m => m.MyProfileModule),
-  //   canLoad: [AuthGuard]
-  // },
+  {
+    path: 'profile',
+    loadChildren: () => import('./main/my-profile/my-profile.module').then(m => m.MyProfileModule),
+    canLoad: [AuthGuard]
+  },
   
   
 ];
