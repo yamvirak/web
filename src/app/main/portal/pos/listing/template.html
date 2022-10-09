@@ -148,8 +148,11 @@
                                 <td>
 
                                     <div class="qty-cnt">
-                                        <input type="number" [(ngModel)]=" item.temp_qty  " (blur)="blur($event, i)"
-                                            min="1" max="10000000" class="qty-input">
+                                        <input type="number" 
+                                        [(ngModel)]=" item.temp_qty" 
+                                        (blur)="blur($event, i)"
+                                        min="1" max="1000" 
+                                        class="qty-input">
 
                                     </div>
 

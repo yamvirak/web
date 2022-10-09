@@ -135,25 +135,25 @@ export class ListingComponent implements OnInit
     }
 
     // ================================>> Sub value 
-    // blur(event: any, index:number = -1){
+    blur(event: any, index:number = -1){
 
-    //   const tempQty = this.cart[index]['qty']; 
-    //   if(event.target.value > 1000000){
-    //     event.target.value = 1000000; 
-    //   }
+      const tempQty = this.cart[index]['qty']; 
+      if(event.target.value > 1000000){
+        event.target.value = 1000000; 
+      }
 
-    //   if(!event.target.value){
-    //     this.cart[index]['qty'] = tempQty; 
-    //     this.cart[index]['temp_qty'] = tempQty; 
-    //   }else{
-    //     this.cart[index]['qty'] = parseInt(event.target.value);
-    //     this.cart[index]['temp_qty'] = parseInt(event.target.value);
-    //   }
+      if(!event.target.value){
+        this.cart[index]['qty'] = tempQty; 
+        this.cart[index]['temp_qty'] = tempQty; 
+      }else{
+        this.cart[index]['qty'] = parseInt(event.target.value);
+        this.cart[index]['temp_qty'] = parseInt(event.target.value);
+      }
   
-    //   this.getTotalPrice();
+      this.getTotalPrice();
 
 
-    // }
+    }
 
     // =================================>> Remove
     remove(index:number = -1){

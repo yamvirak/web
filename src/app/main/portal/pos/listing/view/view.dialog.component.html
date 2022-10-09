@@ -53,21 +53,37 @@
                             {{ row?.product?.name }}
                         </td>
                         <td class="text-right">
-                            {{ row?.unit_price | number }}
+                            {{ row?.product?.unit_price | number }}
                         </td>
                         <td class="text-right">
                             {{ row?.qty }}
                         </td>
                         <td class="text-right">
-                            {{ row?.unit_price*row?.qty | number }}
+                            {{ row?.product?.unit_price*row?.qty | number }}
                         </td>
                     </tr>
 
                     <tr >
 
-                        <td class="text-right" colspan="4" >Total (KHR)</td>
+                        <td class="text-right" colspan="4" >Total Price</td>
                         <td class="text-right">
                             <b class="total" >{{ data?.total_price | number }}</b>
+                        </td>
+                        
+                    </tr>
+                    <tr >
+
+                        <td class="text-right" colspan="4" >Discount (%)</td>
+                        <td class="text-right">
+                            <b class="total" >{{ data?.discount | number }}</b>
+                        </td>
+                        
+                    </tr>
+                    <tr >
+
+                        <td class="text-right" colspan="4" >Totle Receive</td>
+                        <td class="text-right">
+                            <b class="total" >{{ data?.total_price_khr | number }}</b>
                         </td>
                         
                     </tr>
